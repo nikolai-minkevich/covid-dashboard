@@ -30,7 +30,7 @@ class StatisticTable {
       ]
     );
     const slider = new Slider("жужужу");
-    slider.classNames.add("statistic_slider")
+    //slider.classNames.add("statistic_slider")
     const statisticContainer = create("div", "statistic_container__prime", [
       casesContainer,
       deathsContainer,
