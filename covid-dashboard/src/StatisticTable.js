@@ -1,4 +1,5 @@
 import create from "./create";
+import Slider from "./Slider";
 class StatisticTable {
   constructor() {
     return this.generateLayout();
@@ -28,10 +29,14 @@ class StatisticTable {
         create("ul", "recovered_list statistic_list"),
       ]
     );
+    const slider = new Slider("жужужу");
+    slider.classNames.add("statistic_slider")
     const statisticContainer = create("div", "statistic_container__prime", [
       casesContainer,
       deathsContainer,
       recoveredContainer,
+      slider
+      
     ]);
     return statisticContainer
   }
