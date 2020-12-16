@@ -1,10 +1,10 @@
 import { create } from "./create";
-class Header {
+class Main {
   constructor(){
     return this.generateLayout()
   }
   generateLayout() {
-    return create("div", null, create("h1", null, "COVID-19 Dashboard"));
+    return create("main", "mainContent_container");
   }
 }
-export default Header;
+export default Main;
