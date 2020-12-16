@@ -16,7 +16,7 @@
   \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create */ \"./covid-dashboard/src/create.js\");\n\n\nclass Header {\n  constructor() {\n    return this.generateLayout();\n  }\n\n  generateLayout() {\n    return (0,_create__WEBPACK_IMPORTED_MODULE_0__.create)(\"div\", null, (0,_create__WEBPACK_IMPORTED_MODULE_0__.create)(\"h1\", null, \"COVID-19 Dashboard\"));\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/Header.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create */ \"./covid-dashboard/src/create.js\");\n\n\nclass Header {\n  constructor() {\n    return this.generateLayout();\n  }\n\n  generateLayout() {\n    return (0,_create__WEBPACK_IMPORTED_MODULE_0__.default)(\"div\", null, (0,_create__WEBPACK_IMPORTED_MODULE_0__.default)(\"h1\", null, \"COVID-19 Dashboard\"));\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Header);\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/Header.js?");
 
 /***/ }),
 
@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create */ \"./covid-dashboard/src/create.js\");\n\n\nclass Main {\n  constructor() {\n    return this.generateLayout();\n  }\n\n  generateLayout() {\n    return (0,_create__WEBPACK_IMPORTED_MODULE_0__.create)(\"main\", \"mainContent_container\");\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Main);\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/Main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create */ \"./covid-dashboard/src/create.js\");\n\n\nclass Main {\n  constructor() {\n    return this.generateLayout();\n  }\n\n  generateLayout() {\n    return (0,_create__WEBPACK_IMPORTED_MODULE_0__.default)(\"main\", \"mainContent_container\");\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Main);\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/Main.js?");
 
 /***/ }),
 
@@ -36,7 +36,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create */ \"./covid-dashboard/src/create.js\");\n/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Main */ \"./covid-dashboard/src/Main.js\");\n/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ \"./covid-dashboard/src/Header.js\");\n\n\n\n\nclass Wrapper {\n  constructor() {\n    return this.generateLayout();\n  }\n\n  generateLayout() {\n    return (0,_create__WEBPACK_IMPORTED_MODULE_0__.create)('div', 'wraper', [new _Header__WEBPACK_IMPORTED_MODULE_2__.Header(), new _Main__WEBPACK_IMPORTED_MODULE_1__.Main()]);\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Wrapper);\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/Wrapper.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => __WEBPACK_DEFAULT_EXPORT__\n/* harmony export */ });\n/* harmony import */ var _create__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./create */ \"./covid-dashboard/src/create.js\");\n/* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Main */ \"./covid-dashboard/src/Main.js\");\n/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Header */ \"./covid-dashboard/src/Header.js\");\n\n\n\n\nclass Wrapper {\n  constructor() {\n    return this.generateLayout();\n  }\n\n  generateLayout() {\n    return (0,_create__WEBPACK_IMPORTED_MODULE_0__.default)(\"div\", \"wraper\", [new _Header__WEBPACK_IMPORTED_MODULE_2__.default(), new _Main__WEBPACK_IMPORTED_MODULE_1__.default()]);\n  }\n\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Wrapper);\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/Wrapper.js?");
 
 /***/ }),
 
@@ -56,7 +56,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Wrapper */ \"./covid-dashboard/src/Wrapper.js\");\nconsole.log('init');\n\ndocument.body.append(new _Wrapper__WEBPACK_IMPORTED_MODULE_0__.Wrapper());\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Wrapper__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Wrapper */ \"./covid-dashboard/src/Wrapper.js\");\nconsole.log(\"init\");\n\ndocument.body.append(new _Wrapper__WEBPACK_IMPORTED_MODULE_0__.default());\n\n//# sourceURL=webpack://covid-dashboard/./covid-dashboard/src/index.js?");
 
 /***/ })
 
