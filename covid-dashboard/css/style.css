@@ -78,6 +78,7 @@ li {
   display: flex;
   width: 100%;
 }
+
 @import "./statisticTable";
 
 /*
