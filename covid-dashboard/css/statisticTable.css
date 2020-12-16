@@ -1,16 +1,20 @@
 .statistic_container__prime {
-  width: 36.2vw;
+  width: 37.9vw;
   display: flex;
   justify-content: space-between;
 }
 .statistic_container {
   background-color: cornflowerblue;/*потом убрать мб*/
-  width: 12vw;
+  width: 12.5vw;
   height: 40vh;
   display: flex;
   flex-direction: column;
 }
 .statistic_header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
   background-color: cadetblue;/*потом убрать мб*/
   height: 20%;
   width: 100%;
