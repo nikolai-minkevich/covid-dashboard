@@ -1,7 +1,7 @@
 import create from "./create";
 class StatisticTable {
   constructor() {
-    return generateLayout();
+    return this.generateLayout();
   }
   generateLayout() {
     const casesContainer = create(
