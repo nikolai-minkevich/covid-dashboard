@@ -1,7 +1,7 @@
-import { create } from "./create";
+import create from "./create";
 class Main {
-  constructor(){
-    return this.generateLayout()
+  constructor() {
+    return this.generateLayout();
   }
   generateLayout() {
     return create("main", "mainContent_container");

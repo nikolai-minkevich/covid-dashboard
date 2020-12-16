@@ -1,3 +1,3 @@
-console.log('init');
-import { Wrapper } from "./Wrapper";
+console.log("init");
+import Wrapper from "./Wrapper";
 document.body.append(new Wrapper());
