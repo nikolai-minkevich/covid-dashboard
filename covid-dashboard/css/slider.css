@@ -1,5 +1,15 @@
-.slider{
- width: 100%;
- height: 100px;
- background-color: crimson;
+.slider_container {
+  width: 100%;
+  height: 20%;
+  background-color: crimson;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.slider_leftArrow, .slider_rightArrow{
+  height: 100%;
+  width: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
