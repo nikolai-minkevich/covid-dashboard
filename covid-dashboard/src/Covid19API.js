@@ -2,7 +2,10 @@
 Documetation: https://corona.lmao.ninja/docs/#/
 */
 class Covid19API {
-  API_SERVER = "https://corona.lmao.ninja";
+  constructor () {
+    this.API_SERVER = "https://corona.lmao.ninja";
+  }
+  
   /**
    * Get global data.
    */
