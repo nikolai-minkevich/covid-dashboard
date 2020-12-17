@@ -81,6 +81,7 @@ li {
 }
 
 @import "./statisticTable";
+@import "./StatisticItem";
 @import "./countryStatistic";
 @import "./slider";
 @import "./header";
