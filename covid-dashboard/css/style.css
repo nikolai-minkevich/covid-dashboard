@@ -1,65 +1,87 @@
 *,
 *:before,
 *:after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-* { box-sizing: border-box }
-a:hover, a:visited, a:link, a:active {text-decoration: none; color: black;}
-
-html{
-    font-family: 'Arial', sans-serif;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
+* {
+  box-sizing: border-box;
 }
-h1,h2,h3,h4,h5,h6{
-    margin: 0;
-}
-h2{
-    font-size: 1.8em;
-    line-height: 1.85em;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-}
-h3{
-    font-size: 1.2em;
-    line-height: 1.3em;
-    font-weight: 600;
-}
-h3{
-    font-size: 1.1em;
-    line-height: 1.15em;
-    font-weight: 600;
+a:hover,
+a:visited,
+a:link,
+a:active {
+  text-decoration: none;
+  color: black;
 }
 
-ul, li{
-    display: block;
-    padding: 0;
-    margin: 0;
+html {
+  font-family: "Arial", sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
-a{
-    text-decoration: none;
-    color: #222222;
-    font-family: 'Arial', sans-serif;
-    font-size: 15px;
-    line-height: 24px;
-    letter-spacing: 0.005em
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
-a:hover{
-cursor: pointer;
+h2 {
+  font-size: 1.6em;
+  line-height: 1.65em;
+  font-weight: 600;
 }
-li{
-    list-style: none;
+h3 {
+  font-size: 1.2em;
+  line-height: 1.3em;
+  font-weight: 600;
+}
+h3 {
+  font-size: 1.1em;
+  line-height: 1.15em;
+  font-weight: 600;
+}
+
+ul,
+li {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: #222222;
+  font-family: "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.005em;
+}
+a:hover {
+  cursor: pointer;
+}
+li {
+  list-style: none;
 }
 .wraper{
-    display: flex;
-    flex-direction: column;
-    width: 98%;
-    margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 98%;
+  margin: 0 auto;
 }
+.mainContent_container{
+  display: flex;
+  width: 100%;
+}
+
+@import "./statisticTable";
+@import "./slider";
+/*
+
 header{
     height: 8%;
     padding: 0.5%;
@@ -68,10 +90,7 @@ header{
     align-items: center;
     margin: 0.5% 0;
 }
-.mainContent_container{
-    display: flex;
-    width: 100%;
-}
+
 .casesStatistics_container{
     display: flex;
     flex-direction: column;
@@ -145,11 +164,7 @@ header{
     height: 5em;
     border-top: 2px solid white;
 }
-.recoveredDeathsTests_container{
-    width:  36.2vw;
-    display: flex;
-    justify-content: space-between;
-}
+
 .recovered_container, .deaths_container, .tests_container, .recoveredDeathsRatio_container{
     min-width: 18vw;
 }
@@ -161,4 +176,4 @@ header{
     font-size: 1.3em;
     line-height:1.2em;
     letter-spacing: 0.005em;
-}
+}*/

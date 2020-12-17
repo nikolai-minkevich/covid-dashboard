@@ -1,0 +1,29 @@
+.statistic_container__prime {
+  width: 37.9vw;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.statistic_container {
+  background-color: cornflowerblue;/*потом убрать мб*/
+  width: 12.5vw;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+}
+.statistic_header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: cadetblue;/*потом убрать мб*/
+  height: 20%;
+  width: 100%;
+}
+.statistic_list{
+  background-color: aquamarine;/*потом убрать мб*/
+  height: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
