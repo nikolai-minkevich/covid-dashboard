@@ -5,6 +5,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: -40px;
+  z-index: 20;
 }
 .slider_leftArrow, .slider_rightArrow{
   height: 100%;
