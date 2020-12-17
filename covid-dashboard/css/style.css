@@ -75,10 +75,12 @@ li {
 }
 .mainContent_container{
   display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
 @import "./statisticTable";
+@import "./countryStatistic";
 @import "./slider";
 @import "./header";
 /*
