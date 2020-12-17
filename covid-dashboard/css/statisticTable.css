@@ -1,5 +1,6 @@
 .statistic_container__prime {
   width: 37.9vw;
+  height: 50vh;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -17,12 +18,12 @@
   text-align: center;
   justify-content: center;
   background-color: cadetblue;/*потом убрать мб*/
-  height: 20%;
+  height: 10vh;
   width: 100%;
 }
 .statistic_list{
   background-color: aquamarine;/*потом убрать мб*/
-  height: 80%;
+  height: 30vh;
   width: 100%;
   display: flex;
   flex-direction: column;
