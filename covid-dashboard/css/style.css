@@ -80,16 +80,9 @@ li {
 
 @import "./statisticTable";
 @import "./slider";
+@import "./header";
 /*
 
-header{
-    height: 8%;
-    padding: 0.5%;
-    background-color: cadetblue;
-    display: flex;
-    align-items: center;
-    margin: 0.5% 0;
-}
 
 .casesStatistics_container{
     display: flex;
