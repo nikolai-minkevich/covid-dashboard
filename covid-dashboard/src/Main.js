@@ -10,14 +10,18 @@ class Main {
     console.log("skjldsdfsljf");
   }
   generateLayout() {
+    document.querySelector('.wrapper').append(create("main", "mainContent_container"))
     const covid19API = new Covid19API();
     covid19API.getCountries().then(data => {
-      document.querySelector('.wrapper').append(
-        create("main", "mainContent_container", [new CountryStatistic(data), new StatisticTable()])
+      document.querySelector('.mainContent_container').append(
+        new CountryStatistic(data)
       )
     });
-
-    //return ;
+    covid19API.getAll().then(data => {
+      document.querySelector('.mainContent_container').append(
+        new StatisticTable(data)
+      )
+    });
   }
 }
 export default Main;

@@ -41,7 +41,6 @@ class CountryStatistic {
     return this.generateLayout();
   }
   generateLayout() {
-    console.log(this.data);
     const countries = this.countries;
     const demoList =[];
     countries.map((item) => {
