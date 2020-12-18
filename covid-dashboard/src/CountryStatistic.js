@@ -1,6 +1,8 @@
 import create from "./create";
 import Slider from "./Slider";
 import StatisticItem from "./StatisticItem";
+
+
 //демолист, надо переделать на результат из апи
 const demoListExample = [
     {
