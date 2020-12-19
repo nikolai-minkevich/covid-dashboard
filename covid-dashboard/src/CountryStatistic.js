@@ -65,7 +65,8 @@ class CountryStatistic {
     const slider = new Slider(
       `${demoListItems[this.choisenItem]}`,
       "countryStatistic__left",
-      "countryStatistic__right"
+      "countryStatistic__right",
+      "countryStatistic__nameOfItem"
     );
     const countryStatisticContainer = create(
       "div",
@@ -117,6 +118,9 @@ class CountryStatistic {
       ].country;
       item.lastChild.textContent = this.demoList[this.choisenItem][index].score;
     });
+    console.log(">>>>>>>>>>>>>",document.querySelector(".countryStatistic__nameOfItem").textContent );
+    document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`
+    //console.log(">>>>>>>>>>>>>", document.querySelectorAll(".countryStatistic__nameOfItem"));
   }
 }
 export default CountryStatistic;

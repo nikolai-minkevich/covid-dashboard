@@ -1,9 +1,10 @@
 import create from "./create";
 class Slider{
-    constructor(nameOfItem, leftArrowClassName, rightArrowClassName){
+    constructor(nameOfItem, leftArrowClassName, rightArrowClassName, nameOfItemClassName){
         this.nameOfItem = nameOfItem;
         this.leftArrowClassName = leftArrowClassName;
         this.rightArrowClassName = rightArrowClassName;
+        this.nameOfItemClassName = nameOfItemClassName;
         return this.generateLayout();
     }
     generateLayout(){
@@ -12,7 +13,7 @@ class Slider{
         const rightArrow = create("div", "slider_rightArrow", ">");
         leftArrow.classList.add(`${this.leftArrowClassName}`);
         rightArrow.classList.add(`${this.rightArrowClassName}`);
-
+        nameOfItem.classList.add(`${this.nameOfItemClassName}`);
         const result = create("div", "slider_container", [
             leftArrow,
             nameOfItem,

@@ -66,7 +66,8 @@ class StatisticTable {
     const slider = new Slider(
       `${demoListItems[this.choisenItem]}`,
       "statisticTable__left",
-      "statisticTable__right"
+      "statisticTable__right",
+      "statisticTable__nameOfItem"
     );
     //console.log(slider.classList);
     const statisticContainer = create("div", "statistic_container__prime", [
