@@ -1,6 +1,8 @@
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+import GeonamesAPI from './GeonamesAPI';
+
 class WorldMap {
 
     constructor() {
@@ -22,16 +24,32 @@ class WorldMap {
 
     init() {
         console.log('worldmap init');
-        let mymap = L.map('mapid').setView([51.505, -0.09], 13);
-        let accessToken = 'pk.eyJ1Ijoibm1pbmtldmljaCIsImEiOiJjazVqeGVnYjEwN2trM29ybWtrdDBvOXFzIn0.0y70HLurlAEtyMY-ahO4CA'
-        L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=${accessToken}`, {
+        let mymap = L.map('mapid').setView([30.0, 60.0], 13);
+
+        L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}`, {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
+            maxZoom: 2,
             id: 'mapbox/streets-v11',
             tileSize: 512,
             zoomOffset: -1,
-            accessToken: 'your.mapbox.access.token'
+            accessToken: 'pk.eyJ1Ijoibm1pbmtldmljaCIsImEiOiJjazVqeGVnYjEwN2trM29ybWtrdDBvOXFzIn0.0y70HLurlAEtyMY-ahO4CA'
         }).addTo(mymap);
+
+        var popup = L.popup();
+        let geonamesAPI = new GeonamesAPI();
+        function onMapClick(e) {
+            console.log(e.latlng.toString());
+            geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(data => {
+                console.log(data);
+                popup
+                .setLatLng(e.latlng)
+                .setContent(data)
+                .openOn(mymap);
+            });
+            
+        }
+
+        mymap.on('click', onMapClick);
     }
 }
 
