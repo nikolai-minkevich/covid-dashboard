@@ -1,28 +1,31 @@
 *,
 *:before,
 *:after {
-  margin: 0;
-  padding: 0;
+  margin    : 0;
+  padding   : 0;
   box-sizing: border-box;
 }
+
 * {
   box-sizing: border-box;
 }
+
 a:hover,
 a:visited,
 a:link,
 a:active {
   text-decoration: none;
-  color: black;
+  color          : black;
 }
 
 html {
   font-family: "Arial", sans-serif;
-  font-size: 15px;
-  font-style: normal;
+  font-size  : 15px;
+  font-style : normal;
   font-weight: 400;
   line-height: 20px;
 }
+
 h1,
 h2,
 h3,
@@ -31,18 +34,21 @@ h5,
 h6 {
   margin: 0;
 }
+
 h2 {
-  font-size: 1.6em;
+  font-size  : 1.6em;
   line-height: 1.65em;
   font-weight: 600;
 }
+
 h3 {
-  font-size: 1.2em;
+  font-size  : 1.2em;
   line-height: 1.3em;
   font-weight: 600;
 }
+
 h3 {
-  font-size: 1.1em;
+  font-size  : 1.1em;
   line-height: 1.15em;
   font-weight: 600;
 }
@@ -51,33 +57,38 @@ ul,
 li {
   display: block;
   padding: 0;
-  margin: 0;
+  margin : 0;
 }
+
 a {
   text-decoration: none;
-  color: #222222;
-  font-family: "Arial", sans-serif;
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0.005em;
+  color          : #222222;
+  font-family    : "Arial", sans-serif;
+  font-size      : 15px;
+  line-height    : 24px;
+  letter-spacing : 0.005em;
 }
+
 a:hover {
   cursor: pointer;
 }
+
 li {
   list-style: none;
 }
-.wrapper{
-  display: flex;
+
+.wrapper {
+  display       : flex;
   flex-direction: column;
-  width: 98%;
-  margin: 0 auto;
+  width         : 98%;
+  margin        : 0 auto;
 }
-.mainContent_container{
-  display: flex;
+
+.mainContent_container {
+  display        : flex;
   justify-content: space-between;
-  width: 100%;
-  height: 96vh;
+  width          : 100%;
+  height         : 96vh;
 }
 
 @import "./statisticTable";
@@ -85,6 +96,7 @@ li {
 @import "./countryStatistic";
 @import "./slider";
 @import "./header";
+@import "./worldMap.css";
 /*
 
 
