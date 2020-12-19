@@ -7,8 +7,6 @@ class CountryStatistic {
     this.choisenItem = 0;
     this.demoList = null;
     this.demoListItems = null;
-    //this.countries = countries;
-    //return this.generateLayout();
   }
   generateLayout(data) {
     this.countries = data;

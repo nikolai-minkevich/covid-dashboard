@@ -1,21 +1,40 @@
 import create from "./create";
 import StatisticTable from "./StatisticTable";
 import CountryStatistic from "./CountryStatistic";
-import Covid19API from "./Covid19API"
+import Covid19API from "./Covid19API";
 class Main {
-  /*constructor() {
-    //return this.generateLayout();
-  }*/
+  constructor() {
+    this.choseCountry = null;
+    this.countriesData = null;
+  }
   generateLayout() {
     const countryStatistic = new CountryStatistic();
-    const statisticTable = new StatisticTable();
-    document.querySelector('.wrapper').append(create("main", "mainContent_container"))
+    this.statisticTable = new StatisticTable();
+    document
+      .querySelector(".wrapper")
+      .append(create("main", "mainContent_container"));
     const covid19API = new Covid19API();
-    covid19API.getCountries().then(data => {
-      countryStatistic.generateLayout(data)
+    covid19API.getCountries().then((data) => {
+      countryStatistic.generateLayout(data);
+      this.setupListeners();
     });
-    covid19API.getAll().then(data => {
-        statisticTable.generateLayout(data)
+    covid19API.getAll().then((data) => {
+      this.statisticTable.createData(data);
+      this.statisticTable.generateLayout();
+    });
+  }
+  setupListeners() {
+    document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const country = e.target.closest(".countryStatistic_demo_item");
+        if (!country) return;
+        this.choseCountry = country.querySelector(".demo_country").innerHTML;
+        const covid19API = new Covid19API();
+        covid19API.getCountry(this.choseCountry).then((data) => {
+          this.statisticTable.changeViewForChosenCountry(data);
+        });
+      });
     });
   }
 }
