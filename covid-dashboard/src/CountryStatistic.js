@@ -108,8 +108,10 @@ class CountryStatistic {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
       item.firstChild.textContent = this.demoList[this.choisenItem][
         index
-      ].country;
-      item.lastChild.textContent = this.demoList[this.choisenItem][index].score;
+      ].score;
+
+      
+      item.lastChild.textContent = this.demoList[this.choisenItem][index].country;
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`
   }
