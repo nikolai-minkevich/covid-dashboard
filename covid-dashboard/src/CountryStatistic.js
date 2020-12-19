@@ -82,10 +82,6 @@ class CountryStatistic {
   }
 
   setupListeners() {
-    console.log(
-      "sdfjklslkjfd",
-      document.querySelector(".countryStatistic__left")
-    );
     document
       .querySelector(".countryStatistic__left")
       .addEventListener("click", () => {
@@ -111,16 +107,13 @@ class CountryStatistic {
   }
 
   changeView() {
-    console.log(this.demoList[this.choisenItem].length, document.querySelectorAll(".countryStatistic_demo_item").length);
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
       item.firstChild.textContent = this.demoList[this.choisenItem][
         index
       ].country;
       item.lastChild.textContent = this.demoList[this.choisenItem][index].score;
     });
-    console.log(">>>>>>>>>>>>>",document.querySelector(".countryStatistic__nameOfItem").textContent );
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`
-    //console.log(">>>>>>>>>>>>>", document.querySelectorAll(".countryStatistic__nameOfItem"));
   }
 }
 export default CountryStatistic;

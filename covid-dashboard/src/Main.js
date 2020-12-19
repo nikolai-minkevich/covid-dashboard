@@ -7,16 +7,15 @@ class Main {
     //return this.generateLayout();
   }*/
   generateLayout() {
-    const countryStatistic = new CountryStatistic()
+    const countryStatistic = new CountryStatistic();
+    const statisticTable = new StatisticTable();
     document.querySelector('.wrapper').append(create("main", "mainContent_container"))
     const covid19API = new Covid19API();
     covid19API.getCountries().then(data => {
       countryStatistic.generateLayout(data)
     });
     covid19API.getAll().then(data => {
-      document.querySelector('.mainContent_container').append(
-        new StatisticTable(data)
-      )
+        statisticTable.generateLayout(data)
     });
   }
 }
