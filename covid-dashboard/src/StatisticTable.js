@@ -18,7 +18,7 @@ class StatisticTable {
       "total cases / deaths / recovered per 100000",
       "today cases / deaths / recovered per 100000",
     ];
-    this.demoListItems =  demoListItems;
+    this.demoListItems = demoListItems;
     const totalCases = this.countries.cases;
     const totalDeaths = this.countries.deaths;
     const totalRecovered = this.countries.recovered;
@@ -82,9 +82,7 @@ class StatisticTable {
       recoveredContainer,
       slider,
     ]);
-    document
-    .querySelector(".mainContent_container")
-    .append(statisticContainer);
+    document.querySelector(".mainContent_container").append(statisticContainer);
     this.setupListeners();
   }
   setupListeners() {
@@ -115,17 +113,29 @@ class StatisticTable {
   }
 
   changeView() {
-
-    document.querySelector(".statisticTable_cases").textContent = `${this.demoList[this.choisenItem][0]}`
-    document.querySelector(".statisticTable_deaths").textContent = `${this.demoListItems[this.choisenItem][1]}`
-    document.querySelector(".statisticTable_recovered").textContent = `${this.demoListItems[this.choisenItem][2]}`
+    console.log(
+      ">>>>>>>>>>>",
+      this.demoList[this.choisenItem][2],
+      this.demoList
+    );
+    document.querySelector(".statisticTable_cases").textContent = this.demoList[
+      this.choisenItem
+    ][0];
+    document.querySelector(
+      ".statisticTable_deaths"
+    ).textContent = this.demoList[this.choisenItem][1];
+    document.querySelector(
+      ".statisticTable_recovered"
+    ).textContent = this.demoList[this.choisenItem][2];
     /*document.querySelectorAll(".statisticTable_demo_item").forEach((item, index) => {
       item.firstChild.textContent = this.demoList[this.choisenItem][
         index
       ].country;
       item.lastChild.textContent = this.demoList[this.choisenItem][index].score;
     });*/
-    document.querySelector(".statisticTable__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`
+    document.querySelector(".statisticTable__nameOfItem").textContent = `${
+      this.demoListItems[this.choisenItem]
+    }`;
   }
 }
 export default StatisticTable;
