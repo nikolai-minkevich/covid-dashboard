@@ -60,7 +60,8 @@ class StatisticTable {
     const recoveredContainer = new StatisticItem(
       "Recovered",
       [demoList[this.choisenItem][2]],
-      false
+      false,
+      "statisticTable_demo_item"
     );
     const slider = new Slider(
       `${demoListItems[this.choisenItem]}`,

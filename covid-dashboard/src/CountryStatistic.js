@@ -59,7 +59,8 @@ class CountryStatistic {
     const countryStatistic = new StatisticItem(
       "Countries",
       demoList[this.choisenItem],
-      true
+      true,
+      "countryStatistic_demo_item"
     );
     const slider = new Slider(
       `${demoListItems[this.choisenItem]}`,
@@ -109,8 +110,8 @@ class CountryStatistic {
   }
 
   changeView() {
-    console.log(this.demoList[this.choisenItem].length, document.querySelectorAll(".demo_item").length);
-    document.querySelectorAll(".demo_item").forEach((item, index) => {
+    console.log(this.demoList[this.choisenItem].length, document.querySelectorAll(".countryStatistic_demo_item").length);
+    document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
       item.firstChild.textContent = this.demoList[this.choisenItem][
         index
       ].country;

@@ -9,10 +9,11 @@ import create from "./create";
 
 
 class StatisticItem {
-  constructor(itemName, demoList, showCountry) {
+  constructor(itemName, demoList, showCountry, className) {
     this.demoList = demoList;
     this.itemName = itemName;
     this.showCountry = showCountry;
+    this.className = className;
     return this.generateLayout();
   }
   generateLayout() {
@@ -29,7 +30,7 @@ class StatisticItem {
           `${demoList[i].country}`
         );
       }
-      const demoItem = create("div", "demo_item", [demoNumber, demoCountry]);
+      const demoItem = create("div", `demo_item ${this.className}`, [demoNumber, demoCountry]);
       statisticList.append(demoItem);
     }
 
