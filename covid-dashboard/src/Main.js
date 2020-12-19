@@ -6,16 +6,12 @@ class Main {
   /*constructor() {
     //return this.generateLayout();
   }*/
-  test(){
-    console.log("skjldsdfsljf");
-  }
   generateLayout() {
+    const countryStatistic = new CountryStatistic()
     document.querySelector('.wrapper').append(create("main", "mainContent_container"))
     const covid19API = new Covid19API();
     covid19API.getCountries().then(data => {
-      document.querySelector('.mainContent_container').append(
-        new CountryStatistic(data)
-      )
+      countryStatistic.generateLayout(data)
     });
     covid19API.getAll().then(data => {
       document.querySelector('.mainContent_container').append(
