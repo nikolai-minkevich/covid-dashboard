@@ -42,6 +42,7 @@ class CountryStatistic {
   }
   generateLayout() {
     const countries = this.countries;
+    console.log(this.countries, "countries");
     const demoList =[];
     countries.map((item) => {
       demoList.push({
@@ -49,6 +50,7 @@ class CountryStatistic {
         score: item.cases
       })
     })
+    demoList.sort((a, b)=>a.score < b.score ? 1 : -1)
     const countryStatistic = new StatisticItem("Russia Cases", demoList, true);
     const slider = new Slider("жужужу");
     const countryStatisticContainer = create("div", "statistic_container__prime countryStatistic_container__prime", [

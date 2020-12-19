@@ -1,18 +1,25 @@
 import create from "./create";
 class Slider{
-    constructor(nameOfItem/*, className*/){
+    constructor(nameOfItem, leftArrowClassName, rightArrowClassName){
         this.nameOfItem = nameOfItem;
-        /*this.className = className;*/
+        this.leftArrowClassName = leftArrowClassName;
+        this.rightArrowClassName = rightArrowClassName;
         return this.generateLayout();
     }
     generateLayout(){
         const nameOfItem = create('div', 'slider_nameOfItem', `${this.nameOfItem}`);
-        return create("div", "slider_container", [
-            create("div", 'slider_leftArrow', "<"),
+        const leftArrow = create("div", 'slider_leftArrow', "<");
+        const rightArrow = create("div", "slider_rightArrow", ">");
+        leftArrow.classList.add(`${this.leftArrowClassName}`);
+        rightArrow.classList.add(`${this.rightArrowClassName}`);
+
+        const result = create("div", "slider_container", [
+            leftArrow,
             nameOfItem,
-            create("div", "slider_rightArrow", ">")
+            rightArrow
         ]
         )
+        return result;
     }
 }
 export default Slider;
