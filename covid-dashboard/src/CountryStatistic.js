@@ -5,11 +5,13 @@ import StatisticItem from "./StatisticItem";
 class CountryStatistic {
   constructor() {
     this.choisenItem = 0;
+    this.demoList = null;
+    this.demoListItems = null;
     //this.countries = countries;
     //return this.generateLayout();
   }
   generateLayout(data) {
-    this.countries = data
+    this.countries = data;
     const demoListItems = [
       "total cases",
       "total deaths",
@@ -24,6 +26,7 @@ class CountryStatistic {
       "today deaths per 100000",
       "today recovered per 100000",
     ];
+    this.demoListItems = demoListItems;
     const countries = this.countries;
     const demoList = [];
     for (let i = 0; i < demoListItems.length; i += 1) {
@@ -52,8 +55,9 @@ class CountryStatistic {
         demoList[i].sort((a, b) => (a.score < b.score ? 1 : -1));
       }
     });
+    this.demoList = demoList;
     const countryStatistic = new StatisticItem(
-      "Russia Cases",
+      "Countries",
       demoList[this.choisenItem],
       true
     );
@@ -67,21 +71,51 @@ class CountryStatistic {
       "statistic_container__prime countryStatistic_container__prime",
       [countryStatistic, slider]
     );
-   // this.changeChoisenItem()
-   //document.querySelector(".mainContent_container").append(countryStatisticContainer)
-   document.querySelector('.mainContent_container').append(countryStatisticContainer)
+    //
+    //document.querySelector(".mainContent_container").append(countryStatisticContainer)
+    document
+      .querySelector(".mainContent_container")
+      .append(countryStatisticContainer);
+    this.setupListeners();
   }
 
-  /*changeChoisenItem(){
-    let count = 0;
-    document.querySelector('.countryStatistic__left').addEventListener('click',()=>{
-      count +=1;
-      console.log("count", count);
-    })
-    document.querySelector('.countryStatistic__right').addEventListener('click',()=>{
-      count -=1;
-      console.log("count", count);
-    })
-  }*/
+  setupListeners() {
+    console.log(
+      "sdfjklslkjfd",
+      document.querySelector(".countryStatistic__left")
+    );
+    document
+      .querySelector(".countryStatistic__left")
+      .addEventListener("click", () => {
+        if (this.choisenItem === 0) {
+          this.changeChosenItem(this.demoListItems.length - 1);
+        } else {
+          this.changeChosenItem(this.choisenItem - 1);
+        }
+      });
+    document
+      .querySelector(".countryStatistic__right")
+      .addEventListener("click", () => {
+        if (this.choisenItem === this.demoListItems.length - 1) {
+          this.changeChosenItem(0);
+        } else {
+          this.changeChosenItem(this.choisenItem + 1);
+        }
+      });
+  }
+  changeChosenItem(number) {
+    this.choisenItem = number;
+    this.changeView();
+  }
+
+  changeView() {
+    console.log(this.demoList[this.choisenItem].length, document.querySelectorAll(".demo_item").length);
+    document.querySelectorAll(".demo_item").forEach((item, index) => {
+      item.firstChild.textContent = this.demoList[this.choisenItem][
+        index
+      ].country;
+      item.lastChild.textContent = this.demoList[this.choisenItem][index].score;
+    });
+  }
 }
 export default CountryStatistic;
