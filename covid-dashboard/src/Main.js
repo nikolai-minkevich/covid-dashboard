@@ -15,7 +15,7 @@ class Main {
     document
       .querySelector(".wrapper")
       .append(create("main", "mainContent_container"));
-    
+
     this.covid19API = new Covid19API();
     this.covid19API.getCountries().then((data) => {
       this.countriesData = data;
@@ -56,6 +56,8 @@ class Main {
         ).textContent = this.choseCountry;
         this.covid19API.getCountry(this.choseCountry).then((data) => {
           this.statisticTable.changeViewForChosenCountry(data);
+console.log(data);
+        this.worldMap.showCountryBounds(data.countryInfo.iso2)
         });
         //this.createShowWorldResultButton()
       });
@@ -99,7 +101,7 @@ class Main {
       this.removeShowWorldResultButton()
     })
   }
-  removeShowWorldResultButton(){
+  removeShowWorldResultButton() {
     const showWorldResultButton = document.querySelector(
       ".button_showWorldResult"
     );
@@ -108,10 +110,10 @@ class Main {
     this.covid19API.getAll().then((data) => {
       this.statisticTable.changeViewForChosenCountry(data);
     });
-    if(document.querySelector(".countryStatistic_demo_item__chosen")){
+    if (document.querySelector(".countryStatistic_demo_item__chosen")) {
       document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
     }
-    if(document.querySelector(".statisticTable_resultFor")){
+    if (document.querySelector(".statisticTable_resultFor")) {
       document.querySelector(".statisticTable_resultFor").textContent = "the world"
     }
   }
