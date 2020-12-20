@@ -2,6 +2,7 @@ import create from "./create";
 import StatisticTable from "./StatisticTable";
 import CountryStatistic from "./CountryStatistic";
 import Covid19API from "./Covid19API";
+
 class Main {
   constructor() {
     this.choseCountry = null;
@@ -36,6 +37,17 @@ class Main {
         });
       });
     });
+    // Add mutation observer for main
+    let mainContainerObserver = new MutationObserver(mutationRecords => {
+      if (mutationRecords[0].attributeName === 'data-country') {
+        console.log(document.querySelector('.mainContent_container').dataset.country);
+      }
+    });
+    mainContainerObserver.observe(document.querySelector('.mainContent_container'), {
+      attributes: true
+    });
   }
+
+
 }
 export default Main;

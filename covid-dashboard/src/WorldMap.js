@@ -36,6 +36,7 @@ class WorldMap {
         const geonamesAPI = new GeonamesAPI();
         function onMapClick(e) {
             geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(data => {
+                document.querySelector('.mainContent_container').setAttribute('data-country',data);
                 L.popup()
                     .setLatLng(e.latlng)
                     .setContent(data)
