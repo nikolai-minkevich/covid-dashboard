@@ -53,6 +53,15 @@ class StatisticTable {
     this.demoList = demoList;
   }
   generateLayout() {
+    const statisticTableHeader = create('div', 'statisticTable_header', 
+    create('div','statisticTable_header_resultFor',[
+      create('div','statisticTable_header_resultFor_string',[
+        create("h2", null, "result for: "),
+        create("h2", "statisticTable_resultFor", "the world")
+      ] ),
+      create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
+    ])
+  )
     const casesContainer = new StatisticItem(
       "Cases",
       [this.demoList[this.choisenItem][0]],
@@ -78,6 +87,7 @@ class StatisticTable {
       "statisticTable__nameOfItem"
     );
     const statisticContainer = create("div", "statistic_container__prime", [
+      statisticTableHeader,
       casesContainer,
       deathsContainer,
       recoveredContainer,
@@ -128,7 +138,6 @@ class StatisticTable {
   changeViewForChosenCountry(data){
     this.choisenCountryData = data;
     this.createData(this.choisenCountryData)
-console.log("this.choisenCountryData ",this.choisenCountryData );
     this.changeView()
   }
 }

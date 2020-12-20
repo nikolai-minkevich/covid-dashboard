@@ -8,7 +8,7 @@ class CountryStatistic {
     this.demoList = null;
     this.demoListItems = null;
   }
-  generateLayout(data) {
+  createData(data) {
     this.countries = data;
     const demoListItems = [
       "total cases",
@@ -49,19 +49,22 @@ class CountryStatistic {
         demoList[i].push({
           country: item.country,
           score: demoListItemsСontent[i],
+          countryCode:  item.countryInfo.iso2
         });
         demoList[i].sort((a, b) => (a.score < b.score ? 1 : -1));
       }
     });
     this.demoList = demoList;
+  }
+  generateLayout() {
     const countryStatistic = new StatisticItem(
       "Countries",
-      demoList[this.choisenItem],
+      this.demoList[this.choisenItem],
       true,
       "countryStatistic_demo_item"
     );
     const slider = new Slider(
-      `${demoListItems[this.choisenItem]}`,
+      `${this.demoListItems[this.choisenItem]}`,
       "countryStatistic__left",
       "countryStatistic__right",
       "countryStatistic__nameOfItem"
@@ -83,6 +86,9 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__left")
       .addEventListener("click", () => {
+        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+          document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
+        }
         if (this.choisenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
@@ -92,6 +98,9 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__right")
       .addEventListener("click", () => {
+        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+          document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
+        }
         if (this.choisenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
@@ -109,8 +118,6 @@ class CountryStatistic {
       item.firstChild.textContent = this.demoList[this.choisenItem][
         index
       ].score;
-
-      
       item.lastChild.textContent = this.demoList[this.choisenItem][index].country;
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`

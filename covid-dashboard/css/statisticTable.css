@@ -1,6 +1,6 @@
 .statistic_container__prime {
-  width: 27.4vw;
-  height: 22vh;
+  width: 27.2vw;
+  height: 25vh;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -8,7 +8,7 @@
 .statistic_container {
   background-color: cornflowerblue;/*потом убрать мб*/
   width: 9vw;
-  height: 22vh;
+  height: 19vh;
   display: flex;
   flex-direction: column;
 }
@@ -18,7 +18,7 @@
   text-align: center;
   justify-content: center;
   background-color: cadetblue;/*потом убрать мб*/
-  height: 10vh;
+  height: 7vh;
   width: 100%;
 }
 .statistic_list{
@@ -33,4 +33,43 @@
 }
 .countryStatistic_demo_item__chosen{
   background-color: darkgreen;
+}
+.statisticTable_header{
+  width: 100%;
+  height: 5vh;
+  background-color:  cadetblue;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  z-index: 20;
+  margin-bottom: 0.1vw;
+}
+.button_showWorldResult{
+  height: 100%;
+  width: 25%;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:  rgb(132, 202, 204);
+}
+.statisticTable_header_resultFor{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.statisticTable_header_resultFor_string{
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.button_showWorldResult__hidden{
+  visibility: hidden;
+  width: 0px;
 }

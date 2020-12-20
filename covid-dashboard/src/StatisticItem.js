@@ -19,9 +19,11 @@ class StatisticItem {
   generateLayout() {
     const statisticList = create("ul", "statistic_list");
     const demoList = this.demoList;
+    let demoItem  = null;
     for (let i = 0; i < demoList.length; i += 1) {
       let demoNumber = create("span", "demo_number", `${demoList[i]}`);
       let demoCountry = null;
+     // 
       if (this.showCountry) {
         demoNumber = create("span", "demo_number", `${demoList[i].score}`);
         demoCountry = create(
@@ -29,8 +31,12 @@ class StatisticItem {
           "demo_country",
           `${demoList[i].country}`
         );
+        demoItem = create("div", `demo_item ${this.className}`, [demoNumber, demoCountry], null, ['id', `${demoList[i].countryCode}`]);
+      } else {
+        demoItem = create("div", `demo_item ${this.className}`, [demoNumber, demoCountry]);
       }
-      const demoItem = create("div", `demo_item ${this.className}`, [demoNumber, demoCountry]);
+     
+
       statisticList.append(demoItem);
     }
 
