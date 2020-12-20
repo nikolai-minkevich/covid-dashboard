@@ -104,6 +104,4 @@ typings/
 node_modules
 
 #webpack dist
-covid-dashboard/dist/
-
 dist/
