@@ -51,6 +51,11 @@ class Main {
         console.log("countryCode", countryCode);
           this.countriesData.map((item)=>{
             if (item.countryInfo.iso2 == countryCode.trim()){
+              if(document.querySelector(".countryStatistic_demo_item__chosen")){
+                document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
+              }
+              const country = document.querySelector(`#${countryCode}`);
+              country.classList.add("countryStatistic_demo_item__chosen")
               console.log("item.countryInfo.iso2", item.countryInfo.iso2, countryCode);
             }
         });
