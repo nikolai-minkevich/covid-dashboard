@@ -31,3 +31,6 @@
 .statisticTable_cases, .statisticTable_deaths, .statisticTable_recovered{
     height: 3em;
 }
+.countryStatistic_demo_item__chosen{
+  background-color: darkgreen;
+}
