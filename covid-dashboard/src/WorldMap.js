@@ -1,13 +1,17 @@
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
+//import countries from '../assets/data/countries.json'
+
 import GeonamesAPI from './GeonamesAPI';
 
 class WorldMap {
 
     constructor() {
-        
         this.worldMap = '';
+        //this.countries = countries
+        // this.getCountryList();
+        console.log(this.countries);
     }
 
     generateLayout() {
@@ -19,6 +23,17 @@ class WorldMap {
             document.querySelector('.mainContent_container').firstChild.after(this.worldMap);
             this.init();
         }, 1500)
+    }
+
+    getCountryList() {
+        return fetch('../assets/data/countries.json')
+            .then(response => {
+                console.log('countries', response);
+                if (!response.ok) throw Error(response.statusText);
+                this.countries = response.json();
+            })
+            .catch(error => console.log(error));
+
     }
 
     init() {
@@ -36,7 +51,7 @@ class WorldMap {
         const geonamesAPI = new GeonamesAPI();
         function onMapClick(e) {
             geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(data => {
-                document.querySelector('.mainContent_container').setAttribute('data-country',data);
+                document.querySelector('.mainContent_container').setAttribute('data-country', data);
                 L.popup()
                     .setLatLng(e.latlng)
                     .setContent(data)
@@ -46,7 +61,6 @@ class WorldMap {
         }
         mymap.on('click', onMapClick);
     }
-
 
 }
 
