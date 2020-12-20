@@ -9,7 +9,7 @@ class Main {
     this.countriesData = null;
   }
   generateLayout() {
-    const countryStatistic = new CountryStatistic();
+    this.countryStatistic = new CountryStatistic();
     this.statisticTable = new StatisticTable();
     document
       .querySelector(".wrapper")
@@ -17,7 +17,8 @@ class Main {
     const covid19API = new Covid19API();
     covid19API.getCountries().then((data) => {
       this.countriesData= data;
-      countryStatistic.generateLayout(data);
+      this.countryStatistic.createData(data);
+      this.countryStatistic.generateLayout();
       this.setupListeners();
     });
     covid19API.getAll().then((data) => {

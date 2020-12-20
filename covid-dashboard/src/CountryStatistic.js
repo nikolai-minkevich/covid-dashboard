@@ -8,7 +8,7 @@ class CountryStatistic {
     this.demoList = null;
     this.demoListItems = null;
   }
-  generateLayout(data) {
+  createData(data) {
     this.countries = data;
     const demoListItems = [
       "total cases",
@@ -54,14 +54,16 @@ class CountryStatistic {
       }
     });
     this.demoList = demoList;
+  }
+  generateLayout() {
     const countryStatistic = new StatisticItem(
       "Countries",
-      demoList[this.choisenItem],
+      this.demoList[this.choisenItem],
       true,
       "countryStatistic_demo_item"
     );
     const slider = new Slider(
-      `${demoListItems[this.choisenItem]}`,
+      `${this.demoListItems[this.choisenItem]}`,
       "countryStatistic__left",
       "countryStatistic__right",
       "countryStatistic__nameOfItem"
