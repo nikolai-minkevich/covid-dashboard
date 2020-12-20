@@ -45,3 +45,31 @@
   z-index: 20;
   margin-bottom: 0.1vw;
 }
+.button_showWorldResult{
+  height: 100%;
+  width: 25%;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color:  rgb(132, 202, 204);
+}
+.statisticTable_header_resultFor{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.statisticTable_header_resultFor_string{
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.button_showWorldResult__hidden{
+  visibility: hidden;
+  width: 0px;
+}

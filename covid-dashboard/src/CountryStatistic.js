@@ -118,8 +118,6 @@ class CountryStatistic {
       item.firstChild.textContent = this.demoList[this.choisenItem][
         index
       ].score;
-
-      
       item.lastChild.textContent = this.demoList[this.choisenItem][index].country;
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`

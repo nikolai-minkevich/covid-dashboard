@@ -55,8 +55,11 @@ class StatisticTable {
   generateLayout() {
     const statisticTableHeader = create('div', 'statisticTable_header', 
     create('div','statisticTable_header_resultFor',[
-      create("h2", null, "result for: "),
-      create("h2", "statisticTable_resultFor", "the world")
+      create('div','statisticTable_header_resultFor_string',[
+        create("h2", null, "result for: "),
+        create("h2", "statisticTable_resultFor", "the world")
+      ] ),
+      create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
     ])
   )
     const casesContainer = new StatisticItem(
@@ -135,7 +138,6 @@ class StatisticTable {
   changeViewForChosenCountry(data){
     this.choisenCountryData = data;
     this.createData(this.choisenCountryData)
-console.log("this.choisenCountryData ",this.choisenCountryData );
     this.changeView()
   }
 }
