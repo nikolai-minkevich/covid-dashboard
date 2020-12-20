@@ -6,7 +6,7 @@ import GeonamesAPI from './GeonamesAPI';
 class WorldMap {
 
     constructor() {
-        this.geonamesAPI = new GeonamesAPI();
+        
         this.worldMap = '';
     }
 
@@ -33,9 +33,9 @@ class WorldMap {
             accessToken: 'pk.eyJ1Ijoibm1pbmtldmljaCIsImEiOiJjazVqeGVnYjEwN2trM29ybWtrdDBvOXFzIn0.0y70HLurlAEtyMY-ahO4CA'
         }).addTo(mymap);
 
-        
+        const geonamesAPI = new GeonamesAPI();
         function onMapClick(e) {
-            this.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(data => {
+            geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(data => {
                 L.popup()
                     .setLatLng(e.latlng)
                     .setContent(data)
@@ -43,7 +43,6 @@ class WorldMap {
             });
 
         }
-
         mymap.on('click', onMapClick);
     }
 
