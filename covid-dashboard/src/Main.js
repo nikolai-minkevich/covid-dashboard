@@ -2,6 +2,7 @@ import create from "./create";
 import StatisticTable from "./StatisticTable";
 import CountryStatistic from "./CountryStatistic";
 import Covid19API from "./Covid19API";
+import WorldMap from "./WorldMap";
 
 class Main {
   constructor() {
@@ -14,6 +15,7 @@ class Main {
     document
       .querySelector(".wrapper")
       .append(create("main", "mainContent_container"));
+    
     this.covid19API = new Covid19API();
     this.covid19API.getCountries().then((data) => {
       this.countriesData = data;
@@ -25,6 +27,15 @@ class Main {
       this.statisticTable.createData(data);
       this.statisticTable.generateLayout();
     });
+    this.worldMap = new WorldMap();
+    this.worldMap.generateLayout();
+
+    setTimeout(() => {
+      this.covid19API.getCountries().then((data) => {
+        this.worldMap.showStatisticRounds(data);
+      })
+    }, 3000)
+
   }
   setupListeners() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {
@@ -104,5 +115,6 @@ class Main {
       document.querySelector(".statisticTable_resultFor").textContent = "the world"
     }
   }
+
 }
 export default Main;

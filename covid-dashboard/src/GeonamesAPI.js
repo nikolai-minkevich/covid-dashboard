@@ -7,14 +7,34 @@ class GeonamesAPI {
         this.API_SERVER = 'http://api.geonames.org/';
         this.username = 'nikolai_minkevich'
     }
+    /**
+     * Get iso2 country code by coordinates.
+     * @param {*} lat 
+     * @param {*} lng 
+     */
     getCountryName(lat, lng) {
-        console.log('OK' + lat + lng);
-        return fetch(this.API_SERVER + `countryCode?lat=${lat}&lng=${lng}&username=${this.username}`, {
+        return fetch(`${this.API_SERVER}countryCode?lat=${lat}&lng=${lng}&username=${this.username}`, {
             method: "GET"
         })
             .then(response => {
-                console.log('r',response);
                 if (!response.ok) throw Error(response.statusText);
+                return response.text();
+            })
+            .catch(error => console.log(error));
+    }
+    /**
+     * Get country info by iso2 country code.
+     * 
+     * If countryCode, return info for all countries.
+     * @param {*} countryCode 
+     */
+    getCountryInfo(countryCode) {
+        return fetch(`${this.API_SERVER}countryInfo?country=${countryCode}&username=${this.username}`, {
+            method: "GET"
+        })
+            .then(response => {
+                if (!response.ok) throw Error(response.statusText);
+                //console.log('resp', response.text());
                 return response.text();
             })
             .catch(error => console.log(error));
