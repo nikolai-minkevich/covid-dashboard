@@ -6,25 +6,23 @@ import GeonamesAPI from './GeonamesAPI';
 class WorldMap {
 
     constructor() {
-
+        this.geonamesAPI = new GeonamesAPI();
+        this.worldMap = '';
     }
 
     generateLayout() {
         console.log('worldmap generateLayout');
-        let worldMap = document.createElement('div');
-        worldMap.id = 'mapid';
+        this.worldMap = document.createElement('div');
+        this.worldMap.id = 'mapid';
+        /* Need to fix this */
         setTimeout(() => {
-            document.querySelector('.mainContent_container').firstChild.after(worldMap);
+            document.querySelector('.mainContent_container').firstChild.after(this.worldMap);
             this.init();
         }, 1500)
-
-
-
     }
 
     init() {
-        console.log('worldmap init');
-        let mymap = L.map('mapid').setView([30.0, 60.0], 2);
+        let mymap = L.map(this.worldMap.id).setView([30.0, 60.0], 2);
 
         L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}`, {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -35,22 +33,21 @@ class WorldMap {
             accessToken: 'pk.eyJ1Ijoibm1pbmtldmljaCIsImEiOiJjazVqeGVnYjEwN2trM29ybWtrdDBvOXFzIn0.0y70HLurlAEtyMY-ahO4CA'
         }).addTo(mymap);
 
-        var popup = L.popup();
-        let geonamesAPI = new GeonamesAPI();
+        
         function onMapClick(e) {
-            console.log(e.latlng.toString());
-            geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(data => {
-                console.log(data);
-                popup
-                .setLatLng(e.latlng)
-                .setContent(data)
-                .openOn(mymap);
+            this.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(data => {
+                L.popup()
+                    .setLatLng(e.latlng)
+                    .setContent(data)
+                    .openOn(mymap);
             });
-            
+
         }
 
         mymap.on('click', onMapClick);
     }
+
+
 }
 
 export default WorldMap;
