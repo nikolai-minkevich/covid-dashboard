@@ -7,8 +7,6 @@ class CountryStatistic {
     this.choisenItem = 0;
     this.demoList = null;
     this.demoListItems = null;
-    //this.countries = countries;
-    //return this.generateLayout();
   }
   generateLayout(data) {
     this.countries = data;
@@ -110,8 +108,10 @@ class CountryStatistic {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
       item.firstChild.textContent = this.demoList[this.choisenItem][
         index
-      ].country;
-      item.lastChild.textContent = this.demoList[this.choisenItem][index].score;
+      ].score;
+
+      
+      item.lastChild.textContent = this.demoList[this.choisenItem][index].country;
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`
   }
