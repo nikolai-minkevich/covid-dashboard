@@ -81,9 +81,7 @@ class WorldMap {
      */
     showCountryBounds(countryCode) {
         this.geonamesAPI.getCountryInfo(countryCode).then(countryInfoXML => {
-            //console.log(convert.xml2json(countryInfoXML, { "compact": true }));
             let countryInfo = JSON.parse(convert.xml2json(countryInfoXML, { "compact": true })).geonames.country;
-            // console.log("countryInfo", countryInfo);
             let bounds = null;
             // Russia so great and we need use a special trick for fit the map for show Russia
             if (countryInfo.countryCode._text === 'RU') {
@@ -99,6 +97,20 @@ class WorldMap {
             }
             this.mymap.fitBounds(bounds);
         });
+    }
+    /**
+     * Draw round for statistic data
+     * @param {number} lat - latitude
+     * @param {number} lng - longitude
+     * @param {number} size - size (1-10)
+     */
+    drawRound(lat, lng, size = 500) {
+        L.circle([lat, lng], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: size
+        }).addTo(this.mymap);
     }
 
 
