@@ -27,8 +27,14 @@ class Main {
   setupListeners() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {
       item.addEventListener("click", (e) => {
+        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+          console.log(document.querySelector(".countryStatistic_demo_item__chosen"));
+          document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
+        }
         e.stopPropagation();
         const country = e.target.closest(".countryStatistic_demo_item");
+
+        country.classList.add("countryStatistic_demo_item__chosen")
         if (!country) return;
         this.choseCountry = country.querySelector(".demo_country").innerHTML;
         const covid19API = new Covid19API();
@@ -37,6 +43,7 @@ class Main {
         });
       });
     });
+
     // Add mutation observer for main
     let mainContainerObserver = new MutationObserver(mutationRecords => {
       if (mutationRecords[0].attributeName === 'data-country') {
