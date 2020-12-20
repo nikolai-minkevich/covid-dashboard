@@ -27,8 +27,13 @@ class Main {
     covid19API.getAll().then((data) => {
       this.statisticTable.createData(data);
       this.statisticTable.generateLayout();
-      this.worldMap.showStatisticRounds(data);
     });
+    setTimeout(() => {
+      covid19API.getCountries().then((data) => {
+        this.worldMap.showStatisticRounds(data);
+      })
+    }, 3000)
+
   }
   setupListeners() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {

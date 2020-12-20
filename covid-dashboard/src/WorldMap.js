@@ -58,8 +58,11 @@ class WorldMap {
         function onMapClick(e) {
             console.log('latlng', e.latlng);
             self.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(countryCode => {
-                document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
-                self.showCountryBounds(countryCode)
+                if (countryCode !== undefined) {
+                    document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
+                }
+
+                //self.showCountryBounds(countryCode)
 
                 // L.popup()
                 //     .setLatLng(e.latlng)
@@ -104,16 +107,63 @@ class WorldMap {
      * @param {number} lng - longitude
      * @param {number} size - size (1-10)
      */
-    drawRound(lat, lng, size = 500) {
+    drawRound(lat, lng, size, countryName, countryFlag) {
         L.circle([lat, lng], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
             radius: size
-        }).addTo(this.mymap);
+        })
+            .addTo(this.mymap)
+            .bindPopup(`<img src='${countryFlag}' class='map-flag'> ${countryName}`);
     }
+    /**
+     * Show 'statistic rounds' for all countries.
+     * @param {array} data - array of data
+     * @param {string} source - title of selected parameter ("cases" by default)
+     * @param {number} coefficient - how much we need to multiply selected parameter (0.1 by default)
+     */
+    showStatisticRounds(data, source = "cases", coefficient = 0.1) {
+        // 
+
+        data.forEach(country => {
+            this.drawRound(country.countryInfo.lat, country.countryInfo.long, country[source] * coefficient, country.country, country.countryInfo.flag)
+        });
+
+        /*
+        active: 9409
+activePerOneMillion: 239.21
+cases: 50677
+casesPerOneMillion: 1288
+continent: "Asia"
+country: "Afghanistan"
+countryInfo:
+flag: "https://disease.sh/assets/img/flags/af.png"
+iso2: "AF"
+iso3: "AFG"
+lat: 33
+long: 65
+_id: 4
+__proto__: Object
+critical: 93
+criticalPerOneMillion: 2.36
+deaths: 2110
+deathsPerOneMillion: 54
+oneCasePerPeople: 776
+oneDeathPerPeople: 18642
+oneTestPerPeople: 218
+population: 39333612
+recovered: 39158
+recoveredPerOneMillion: 995.54
+tests: 180385
+testsPerOneMillion: 4586
+todayCases: 141
+todayDeaths: 56
+todayRecovered: 359
+updated: 1608485384542 */
 
 
+    }
 
 }
 
