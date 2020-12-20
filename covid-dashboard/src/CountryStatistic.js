@@ -86,6 +86,9 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__left")
       .addEventListener("click", () => {
+        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+          document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
+        }
         if (this.choisenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
@@ -95,6 +98,9 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__right")
       .addEventListener("click", () => {
+        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+          document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
+        }
         if (this.choisenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
