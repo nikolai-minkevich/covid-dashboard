@@ -2,14 +2,14 @@
     padding: 5%;
     display: flex;
     flex-direction: column;
+    flex-direction: column;
     justify-content: center;
-   /* min-height: 3em;*/
+
     background-color: chartreuse;
     border-top: 2px solid white;
 }
 .statistic_list{
     background-color: aquamarine;/*потом убрать мб*/
-    height: 30vh;
     width: 100%;
     display: flex;
     flex-direction: column;

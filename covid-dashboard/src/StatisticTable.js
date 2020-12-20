@@ -5,13 +5,13 @@ import StatisticItem from "./StatisticItem";
 class StatisticTable {
   constructor() {
     this.choisenItem = 0;
+    this.data = null;
     this.demoList = null;
     this.demoListItems = null;
-    //return this.generateLayout();
+    this.choisenCountryData = null;
   }
-  generateLayout(data) {
-    this.countries = data;
-    console.log("this.countries", this.countries);
+  createData(data){
+    this.data = data;
     const demoListItems = [
       "total cases / deaths / recovered",
       "today cases / deaths / recovered",
@@ -19,30 +19,30 @@ class StatisticTable {
       "today cases / deaths / recovered per 100000",
     ];
     this.demoListItems = demoListItems;
-    const totalCases = this.countries.cases;
-    const totalDeaths = this.countries.deaths;
-    const totalRecovered = this.countries.recovered;
+    const totalCases = this.data.cases;
+    const totalDeaths = this.data.deaths;
+    const totalRecovered = this.data.recovered;
     const total = [totalCases, totalDeaths, totalRecovered];
-    const totalCasesPer100000 = this.countries.casesPerOneMillion * 10;
-    const totalDeathsPer100000 = this.countries.deathsPerOneMillion * 10;
-    const totalRecoveredPer100000 = this.countries.recoveredPerOneMillion * 10;
+    const totalCasesPer100000 = this.data.casesPerOneMillion * 10;
+    const totalDeathsPer100000 = this.data.deathsPerOneMillion * 10;
+    const totalRecoveredPer100000 = this.data.recoveredPerOneMillion * 10;
     const totalPer100000 = [
       totalCasesPer100000,
       totalDeathsPer100000,
       totalRecoveredPer100000,
     ];
-    const todayCases = this.countries.todayCases;
-    const todayDeaths = this.countries.todayDeaths;
-    const todayRecovered = this.countries.todayRecovered;
+    const todayCases = this.data.todayCases;
+    const todayDeaths = this.data.todayDeaths;
+    const todayRecovered = this.data.todayRecovered;
     const today = [todayCases, todayDeaths, todayRecovered];
     const todayCasesPer100000 = Math.round(
-      this.countries.todayCases / (totalCases / totalCasesPer100000)
+      this.data.todayCases / (totalCases / totalCasesPer100000)
     );
     const todayDeathsPer100000 = Math.round(
-      this.countries.todayDeaths / (totalDeaths / totalDeathsPer100000)
+      this.data.todayDeaths / (totalDeaths / totalDeathsPer100000)
     );
     const todayRecoveredPer100000 = Math.round(
-      this.countries.todayRecovered / (totalRecovered / totalRecoveredPer100000)
+      this.data.todayRecovered / (totalRecovered / totalRecoveredPer100000)
     );
     const todayPer100000 = [
       todayCasesPer100000,
@@ -51,31 +51,32 @@ class StatisticTable {
     ];
     const demoList = [total, today, totalPer100000, todayPer100000];
     this.demoList = demoList;
+  }
+  generateLayout() {
     const casesContainer = new StatisticItem(
       "Cases",
-      [demoList[this.choisenItem][0]],
+      [this.demoList[this.choisenItem][0]],
       false,
       "statisticTable_cases"
     );
     const deathsContainer = new StatisticItem(
       "Deaths",
-      [demoList[this.choisenItem][1]],
+      [this.demoList[this.choisenItem][1]],
       false,
       "statisticTable_deaths"
     );
     const recoveredContainer = new StatisticItem(
       "Recovered",
-      [demoList[this.choisenItem][2]],
+      [this.demoList[this.choisenItem][2]],
       false,
       "statisticTable_recovered"
     );
     const slider = new Slider(
-      `${demoListItems[this.choisenItem]}`,
+      `${this.demoListItems[this.choisenItem]}`,
       "statisticTable__left",
       "statisticTable__right",
       "statisticTable__nameOfItem"
     );
-    //console.log(slider.classList);
     const statisticContainer = create("div", "statistic_container__prime", [
       casesContainer,
       deathsContainer,
@@ -89,7 +90,6 @@ class StatisticTable {
     document
       .querySelector(".statisticTable__left")
       .addEventListener("click", () => {
-        //console.log("ks;flss;f;sf");
         if (this.choisenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
@@ -99,7 +99,6 @@ class StatisticTable {
     document
       .querySelector(".statisticTable__right")
       .addEventListener("click", () => {
-        //console.log('kljdsfksjkjlsfslkf');
         if (this.choisenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
@@ -113,11 +112,6 @@ class StatisticTable {
   }
 
   changeView() {
-    console.log(
-      ">>>>>>>>>>>",
-      this.demoList[this.choisenItem][2],
-      this.demoList
-    );
     document.querySelector(".statisticTable_cases").textContent = this.demoList[
       this.choisenItem
     ][0];
@@ -127,15 +121,15 @@ class StatisticTable {
     document.querySelector(
       ".statisticTable_recovered"
     ).textContent = this.demoList[this.choisenItem][2];
-    /*document.querySelectorAll(".statisticTable_demo_item").forEach((item, index) => {
-      item.firstChild.textContent = this.demoList[this.choisenItem][
-        index
-      ].country;
-      item.lastChild.textContent = this.demoList[this.choisenItem][index].score;
-    });*/
     document.querySelector(".statisticTable__nameOfItem").textContent = `${
       this.demoListItems[this.choisenItem]
     }`;
+  }
+  changeViewForChosenCountry(data){
+    this.choisenCountryData = data;
+    this.createData(this.choisenCountryData)
+console.log("this.choisenCountryData ",this.choisenCountryData );
+    this.changeView()
   }
 }
 export default StatisticTable;
