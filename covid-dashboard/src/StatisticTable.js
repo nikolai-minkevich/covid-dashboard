@@ -1,7 +1,6 @@
 import create from "./create";
 import Slider from "./Slider";
 import StatisticItem from "./StatisticItem";
-
 class StatisticTable {
   constructor() {
     this.choisenItem = 0;
@@ -93,7 +92,7 @@ class StatisticTable {
       recoveredContainer,
       slider,
     ]);
-    document.querySelector(".mainContent_container").append(statisticContainer);
+    document.querySelector(".statisticTableСell").append(statisticContainer);
     this.setupListeners();
   }
   setupListeners() {

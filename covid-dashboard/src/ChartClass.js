@@ -4,7 +4,7 @@ class ChartClass {
   generateHost() {
     const hostForChart = document.createElement("canvas");
     hostForChart.classList.add("hostForChart");
-    document.querySelector(".mainContent_container").append(hostForChart);
+    document.querySelector(".chartClassСell").append(hostForChart);
     /*
     const hostForChart = create(
       "canvas",

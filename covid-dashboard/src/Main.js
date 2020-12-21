@@ -9,13 +9,26 @@ class Main {
     this.choseCountry = null;
     this.countriesData = null;
   }
+  generateGrid() {
+    document
+    .querySelector(".wrapper")
+    .append(create("main", "mainContent_container"));
+    const сountryStatisticСell = create("div", "сountryStatisticСell");
+    const statisticTableСell = create("div", "statisticTableСell");
+    const worldMapСell = create("div", "worldMapСell");
+    const chartClassСell = create("div", "chartClassСell");
+    document
+      .querySelector(".mainContent_container")
+      .append(
+        сountryStatisticСell,
+        statisticTableСell,
+        worldMapСell,
+        chartClassСell
+      );
+  }
   generateLayout() {
     this.countryStatistic = new CountryStatistic();
     this.statisticTable = new StatisticTable();
-    document
-      .querySelector(".wrapper")
-      .append(create("main", "mainContent_container"));
-
     this.covid19API = new Covid19API();
     this.covid19API.getCountries().then((data) => {
       this.countriesData = data;
@@ -35,11 +48,11 @@ class Main {
         this.worldMap.showStatisticRounds(data);
       });
     }, 3000);
-    setTimeout(() => {
+
       const chartClass = new ChartClass();
       chartClass.generateHost();
       chartClass.generateLayout();
-    }, 3100);
+
   }
   setupListeners() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {
