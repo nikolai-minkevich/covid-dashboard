@@ -4,6 +4,7 @@ import CountryStatistic from "./CountryStatistic";
 import Covid19API from "./Covid19API";
 import WorldMap from "./WorldMap";
 import ChartClass from "./ChartClass";
+import DeployerClass from "./DeployerClass";
 class Main {
   constructor() {
     this.choseCountry = null;
@@ -13,10 +14,24 @@ class Main {
     document
     .querySelector(".wrapper")
     .append(create("main", "mainContent_container"));
-    const сountryStatisticСell = create("div", "сountryStatisticСell");
-    const statisticTableСell = create("div", "statisticTableСell");
-    const worldMapСell = create("div", "worldMapСell");
-    const chartClassСell = create("div", "chartClassСell");
+    /*const deployers = [];
+    for(let i =0; i<4;i+=1){
+      const deployer = new DeployerClass()
+      deployers.push(deployer)
+    }
+    console.log("deployers",deployers);*/
+    const сountryStatisticDeployer = new DeployerClass(".сountryStatisticСell")
+    //сountryStatisticDeployer.generateLayout()
+    const statisticTableDeployer = new DeployerClass(".statisticTableСell")
+    //statisticTableDeployer.generateLayout()
+    const worldMapDeployer = new DeployerClass(".worldMapСell")
+    //worldMapDeployer.generateLayout()
+    const chartClassDeployer = new DeployerClass(".chartClassСell")
+    //chartClassDeployer.generateLayout()
+    const сountryStatisticСell = create("div", "сountryStatisticСell",  сountryStatisticDeployer.generateLayout());
+    const statisticTableСell = create("div", "statisticTableСell", statisticTableDeployer.generateLayout());
+    const worldMapСell = create("div", "worldMapСell",  worldMapDeployer.generateLayout());
+    const chartClassСell = create("div", "chartClassСell",  chartClassDeployer.generateLayout());
     const mapChartStatistic_container = create("div", "mapChartStatistic_container",[
       worldMapСell,
       statisticTableСell,
@@ -51,8 +66,8 @@ class Main {
         this.worldMap.showStatisticRounds(data);
       });
     }, 3000);
-
       const chartClass = new ChartClass();
+      chartClass.createData();
       chartClass.generateHost();
       chartClass.generateLayout();
 
