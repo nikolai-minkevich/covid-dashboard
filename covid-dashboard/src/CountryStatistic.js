@@ -77,7 +77,7 @@ class CountryStatistic {
     //
     //document.querySelector(".mainContent_container").append(countryStatisticContainer)
     document
-      .querySelector(".mainContent_container")
+      .querySelector(".сountryStatisticСell")
       .append(countryStatisticContainer);
     this.setupListeners();
   }

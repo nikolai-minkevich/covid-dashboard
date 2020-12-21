@@ -1,0 +1,8 @@
+.mapChartStatistic_container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.chartClassСell{
+height: 30vh;
+width: 30vw;
+}

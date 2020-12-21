@@ -23,7 +23,7 @@ class WorldMap {
         this.worldMap.id = 'mapid';
         /* Need to fix this */
         setTimeout(() => {
-            document.querySelector('.mainContent_container').firstChild.after(this.worldMap);
+            document.querySelector('.worldMapСell').append(this.worldMap);
             this.init();
         }, 1500)
 
