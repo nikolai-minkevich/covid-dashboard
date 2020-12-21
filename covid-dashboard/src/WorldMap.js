@@ -42,11 +42,11 @@ class WorldMap {
 
     init() {
         this.mymap = L.map(this.worldMap.id).setView([30.0, 60.0], 2);
-
+        // Default style id: 'mapbox/streets-v11'
         L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}`, {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 13,
-            id: 'mapbox/streets-v11',
+            id: 'nminkevich/ckiyzis0477jp1aqlqvezwx4l',
             tileSize: 512,
             zoomOffset: -1,
             accessToken: 'pk.eyJ1Ijoibm1pbmtldmljaCIsImEiOiJjazVqeGVnYjEwN2trM29ybWtrdDBvOXFzIn0.0y70HLurlAEtyMY-ahO4CA'
@@ -87,17 +87,27 @@ class WorldMap {
             let countryInfo = JSON.parse(convert.xml2json(countryInfoXML, { "compact": true })).geonames.country;
             let bounds = null;
             // Russia so great and we need use a special trick for fit the map for show Russia
-            if (countryInfo.countryCode._text === 'RU') {
-                bounds = [
-                    [Math.abs(parseFloat(countryInfo.north._text)), Math.abs(parseFloat(countryInfo.west._text))],
-                    [Math.abs(parseFloat(countryInfo.south._text)), Math.abs(parseFloat(countryInfo.east._text))]
-                ];
-            } else {
-                bounds = [
-                    [parseFloat(countryInfo.north._text), parseFloat(countryInfo.west._text)],
-                    [parseFloat(countryInfo.south._text), parseFloat(countryInfo.east._text)]
-                ];
+            switch (countryCode.toUpperCase()) {
+                case 'RU':
+                    bounds = [
+                        [Math.abs(parseFloat(countryInfo.north._text)), Math.abs(parseFloat(countryInfo.west._text))],
+                        [Math.abs(parseFloat(countryInfo.south._text)), Math.abs(parseFloat(countryInfo.east._text))]
+                    ];
+                    break;
+                case 'WORLD':
+                    bounds = [
+                        [-180.0, -90.0],
+                        [180.0, 90.0]
+                    ];
+                    break;
+                default:
+                    bounds = [
+                        [parseFloat(countryInfo.north._text), parseFloat(countryInfo.west._text)],
+                        [parseFloat(countryInfo.south._text), parseFloat(countryInfo.east._text)]
+                    ];
+                    break;
             }
+
             this.mymap.fitBounds(bounds);
         });
     }
