@@ -3,7 +3,7 @@ import Slider from "./Slider";
 import StatisticItem from "./StatisticItem";
 class StatisticTable {
   constructor() {
-    this.choisenItem = 0;
+    this.chosenItem = 0;
     this.data = null;
     this.demoList = null;
     this.demoListItems = null;
@@ -63,24 +63,24 @@ class StatisticTable {
   )
     const casesContainer = new StatisticItem(
       "Cases",
-      [this.demoList[this.choisenItem][0]],
+      [this.demoList[this.chosenItem][0]],
       false,
       "statisticTable_cases"
     );
     const deathsContainer = new StatisticItem(
       "Deaths",
-      [this.demoList[this.choisenItem][1]],
+      [this.demoList[this.chosenItem][1]],
       false,
       "statisticTable_deaths"
     );
     const recoveredContainer = new StatisticItem(
       "Recovered",
-      [this.demoList[this.choisenItem][2]],
+      [this.demoList[this.chosenItem][2]],
       false,
       "statisticTable_recovered"
     );
     const slider = new Slider(
-      `${this.demoListItems[this.choisenItem]}`,
+      `${this.demoListItems[this.chosenItem]}`,
       "statisticTable__left",
       "statisticTable__right",
       "statisticTable__nameOfItem"
@@ -99,39 +99,39 @@ class StatisticTable {
     document
       .querySelector(".statisticTable__left")
       .addEventListener("click", () => {
-        if (this.choisenItem === 0) {
+        if (this.chosenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
-          this.changeChosenItem(this.choisenItem - 1);
+          this.changeChosenItem(this.chosenItem - 1);
         }
       });
     document
       .querySelector(".statisticTable__right")
       .addEventListener("click", () => {
-        if (this.choisenItem === this.demoListItems.length - 1) {
+        if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
-          this.changeChosenItem(this.choisenItem + 1);
+          this.changeChosenItem(this.chosenItem + 1);
         }
       });
   }
   changeChosenItem(number) {
-    this.choisenItem = number;
+    this.chosenItem = number;
     this.changeView();
   }
 
   changeView() {
     document.querySelector(".statisticTable_cases").textContent = this.demoList[
-      this.choisenItem
+      this.chosenItem
     ][0];
     document.querySelector(
       ".statisticTable_deaths"
-    ).textContent = this.demoList[this.choisenItem][1];
+    ).textContent = this.demoList[this.chosenItem][1];
     document.querySelector(
       ".statisticTable_recovered"
-    ).textContent = this.demoList[this.choisenItem][2];
+    ).textContent = this.demoList[this.chosenItem][2];
     document.querySelector(".statisticTable__nameOfItem").textContent = `${
-      this.demoListItems[this.choisenItem]
+      this.demoListItems[this.chosenItem]
     }`;
   }
   changeViewForChosenCountry(data){

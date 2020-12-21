@@ -4,7 +4,7 @@ import StatisticItem from "./StatisticItem";
 
 class CountryStatistic {
   constructor() {
-    this.choisenItem = 0;
+    this.chosenItem = 0;
     this.demoList = null;
     this.demoListItems = null;
   }
@@ -59,7 +59,7 @@ class CountryStatistic {
   generateLayout() {
     const countryStatistic = new StatisticItem(
       "Countries",
-      this.demoList[this.choisenItem],
+      this.demoList[this.chosenItem],
       true,
       "countryStatistic_demo_item"
     );
@@ -89,10 +89,10 @@ class CountryStatistic {
         if(document.querySelector(".countryStatistic_demo_item__chosen")){
           document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
         }
-        if (this.choisenItem === 0) {
+        if (this.chosenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
-          this.changeChosenItem(this.choisenItem - 1);
+          this.changeChosenItem(this.chosenItem - 1);
         }
       });
     document
@@ -101,26 +101,26 @@ class CountryStatistic {
         if(document.querySelector(".countryStatistic_demo_item__chosen")){
           document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
         }
-        if (this.choisenItem === this.demoListItems.length - 1) {
+        if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
-          this.changeChosenItem(this.choisenItem + 1);
+          this.changeChosenItem(this.chosenItem + 1);
         }
       });
   }
   changeChosenItem(number) {
-    this.choisenItem = number;
+    this.chosenItem = number;
     this.changeView();
   }
 
   changeView() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
-      item.firstChild.textContent = this.demoList[this.choisenItem][
+      item.firstChild.textContent = this.demoList[this.chosenItem][
         index
       ].score;
-      item.lastChild.textContent = this.demoList[this.choisenItem][index].country;
+      item.lastChild.textContent = this.demoList[this.chosenItem][index].country;
     });
-    document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.choisenItem]}`
+    document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
   }
 }
 export default CountryStatistic;

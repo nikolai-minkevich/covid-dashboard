@@ -80,7 +80,7 @@ li {
 .wrapper {
   display       : flex;
   flex-direction: column;
-  width         : 98%;
+  width         : 98vw;
   margin        : 0 auto;
 }
 
@@ -99,6 +99,7 @@ li {
 @import "./worldMap.css";
 @import "./chart.css";
 @import "./mainGrid.css";
+@import "./deployerClass.css";
 
 /*
 

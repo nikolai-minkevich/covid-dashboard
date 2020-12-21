@@ -1,0 +1,64 @@
+.deployer__container{
+    position: relative;
+    top: 20px;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(153, 205, 50, 0.3);
+    border-radius: 50%;
+    z-index: 500;
+}
+.deployer__container:hover{
+    background-color: rgba(153, 205, 50);
+    cursor: pointer;
+}
+.expand{
+    height: 90vh;
+    width         : 98vw;
+    position: absolute;
+    z-index: 1000;
+    background-color: white
+}
+
+.expand #mapid{
+    align-self: center;
+    width         : 90vw;
+    height: 80vh;
+}
+.expand .countryStatistic_container__prime{
+    align-self: center;
+    width         : 90vw;
+    height: 80vh;
+    font-size: 20px;
+}
+.expand .statistic_container__prime{
+    align-self: center;
+    width         : 90vw;
+    height: 80vh;
+}
+.statisticTableСell.expand .statistic_container{
+    width: 29.8vw;
+    height: 90%;
+}
+.statisticTableСell.expand .statistic_list{
+    height: 90%;
+}
+.statisticTableСell.expand .demo_item{
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.expand .chart_container{
+    align-self: center;
+    width         : 90vw;
+    height: 80vh;
+}
+
+
+
