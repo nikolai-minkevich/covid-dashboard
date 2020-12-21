@@ -87,17 +87,27 @@ class WorldMap {
             let countryInfo = JSON.parse(convert.xml2json(countryInfoXML, { "compact": true })).geonames.country;
             let bounds = null;
             // Russia so great and we need use a special trick for fit the map for show Russia
-            if (countryInfo.countryCode._text === 'RU') {
-                bounds = [
-                    [Math.abs(parseFloat(countryInfo.north._text)), Math.abs(parseFloat(countryInfo.west._text))],
-                    [Math.abs(parseFloat(countryInfo.south._text)), Math.abs(parseFloat(countryInfo.east._text))]
-                ];
-            } else {
-                bounds = [
-                    [parseFloat(countryInfo.north._text), parseFloat(countryInfo.west._text)],
-                    [parseFloat(countryInfo.south._text), parseFloat(countryInfo.east._text)]
-                ];
+            switch (countryCode.toUpperCase()) {
+                case 'RU':
+                    bounds = [
+                        [Math.abs(parseFloat(countryInfo.north._text)), Math.abs(parseFloat(countryInfo.west._text))],
+                        [Math.abs(parseFloat(countryInfo.south._text)), Math.abs(parseFloat(countryInfo.east._text))]
+                    ];
+                    break;
+                case 'WORLD':
+                    bounds = [
+                        [-180.0, -90.0],
+                        [180.0, 90.0]
+                    ];
+                    break;
+                default:
+                    bounds = [
+                        [parseFloat(countryInfo.north._text), parseFloat(countryInfo.west._text)],
+                        [parseFloat(countryInfo.south._text), parseFloat(countryInfo.east._text)]
+                    ];
+                    break;
             }
+
             this.mymap.fitBounds(bounds);
         });
     }
