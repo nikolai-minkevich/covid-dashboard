@@ -3,7 +3,7 @@ import StatisticTable from "./StatisticTable";
 import CountryStatistic from "./CountryStatistic";
 import Covid19API from "./Covid19API";
 import WorldMap from "./WorldMap";
-
+import ChartClass from "./ChartClass";
 class Main {
   constructor() {
     this.choseCountry = null;
@@ -33,9 +33,13 @@ class Main {
     setTimeout(() => {
       this.covid19API.getCountries().then((data) => {
         this.worldMap.showStatisticRounds(data);
-      })
-    }, 3000)
-
+      });
+    }, 3000);
+    setTimeout(() => {
+      const chartClass = new ChartClass();
+      chartClass.generateHost();
+      chartClass.generateLayout();
+    }, 3100);
   }
   setupListeners() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {
@@ -56,8 +60,8 @@ class Main {
         ).textContent = this.choseCountry;
         this.covid19API.getCountry(this.choseCountry).then((data) => {
           this.statisticTable.changeViewForChosenCountry(data);
-console.log(data);
-        this.worldMap.showCountryBounds(data.countryInfo.iso2)
+          console.log(data);
+          this.worldMap.showCountryBounds(data.countryInfo.iso2);
         });
         //this.createShowWorldResultButton()
       });
@@ -98,8 +102,8 @@ console.log(data);
     );
     showWorldResultButton.classList.remove("button_showWorldResult__hidden");
     showWorldResultButton.addEventListener("click", () => {
-      this.removeShowWorldResultButton()
-    })
+      this.removeShowWorldResultButton();
+    });
   }
   removeShowWorldResultButton() {
     const showWorldResultButton = document.querySelector(
@@ -111,12 +115,14 @@ console.log(data);
       this.statisticTable.changeViewForChosenCountry(data);
     });
     if (document.querySelector(".countryStatistic_demo_item__chosen")) {
-      document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
+      document
+        .querySelector(".countryStatistic_demo_item__chosen")
+        .classList.remove("countryStatistic_demo_item__chosen");
     }
     if (document.querySelector(".statisticTable_resultFor")) {
-      document.querySelector(".statisticTable_resultFor").textContent = "the world"
+      document.querySelector(".statisticTable_resultFor").textContent =
+        "the world";
     }
   }
-
 }
 export default Main;
