@@ -28,6 +28,7 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             title: "COVID19 Dashboard",
+            favicon: './covid-dashboard/favicon.png',
         })
     ],
     mode: 'development'
