@@ -42,11 +42,11 @@ class WorldMap {
 
     init() {
         this.mymap = L.map(this.worldMap.id).setView([30.0, 60.0], 2);
-
+        // Default style id: 'mapbox/streets-v11'
         L.tileLayer(`https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}`, {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 13,
-            id: 'mapbox/streets-v11',
+            id: 'nminkevich/ckiyzis0477jp1aqlqvezwx4l',
             tileSize: 512,
             zoomOffset: -1,
             accessToken: 'pk.eyJ1Ijoibm1pbmtldmljaCIsImEiOiJjazVqeGVnYjEwN2trM29ybWtrdDBvOXFzIn0.0y70HLurlAEtyMY-ahO4CA'
