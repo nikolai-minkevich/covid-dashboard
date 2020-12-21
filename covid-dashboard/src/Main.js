@@ -17,13 +17,16 @@ class Main {
     const statisticTableСell = create("div", "statisticTableСell");
     const worldMapСell = create("div", "worldMapСell");
     const chartClassСell = create("div", "chartClassСell");
+    const mapChartStatistic_container = create("div", "mapChartStatistic_container",[
+      worldMapСell,
+      statisticTableСell,
+      chartClassСell,
+    ])
     document
       .querySelector(".mainContent_container")
       .append(
-        сountryStatisticСell,
-        statisticTableСell,
-        worldMapСell,
-        chartClassСell
+        mapChartStatistic_container,
+        сountryStatisticСell
       );
   }
   generateLayout() {
