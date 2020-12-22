@@ -5,7 +5,7 @@ class SearchBar {
     generateLayout() {
         let searchBar = document.createElement("input")
         searchBar.className = 'search-bar'
-
+        searchBar.placeholder = 'Type for search'
         searchBar.addEventListener('input', (e) => {
             console.log('input', e);
             let searchPhrase = document.querySelector('.search-bar').value
@@ -19,8 +19,7 @@ class SearchBar {
                 }
             })
         })
-        console.log(searchBar);
-        document.body.append(searchBar)
+        document.querySelector('.countryStatistic_container__prime > .statistic_container > .statistic_header').after(searchBar)
     }
 
 }
