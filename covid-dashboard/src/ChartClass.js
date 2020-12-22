@@ -108,7 +108,6 @@ class ChartClass {
     const chartHeader = create('div', 'chart_header', 
     create('div','chart_header_resultFor',[
       create('div','chart_header_resultFor_string',[
-        create("h2", null, "result for: "),
         create("h2", "chart_resultFor", "the world")
       ] ),
       create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
@@ -197,6 +196,12 @@ class ChartClass {
           this.changeChosenItem(this.chosenItem + 1);
         }
       });
+      document.querySelector(".chartClassDeployer").addEventListener("click", () => {
+        document.querySelector(".hostForChart").classList.toggle("hostForChart__expand")
+        this.chartClass.update();
+      }
+      
+      )
   }
   changeChosenItem(number) {
     this.chosenItem = number;

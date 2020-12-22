@@ -10,6 +10,7 @@ class Main {
   constructor() {
     this.choseCountry = null;
     this.countriesData = null;
+    this.historicalAllData =null;
   }
   generateGrid() {
     document
@@ -21,34 +22,49 @@ class Main {
       deployers.push(deployer)
     }
     console.log("deployers",deployers);*/
-    const сountryStatisticDeployer = new DeployerClass(".сountryStatisticСell")
+    const сountryStatisticDeployer = new DeployerClass(".сountryStatisticСell");
     //сountryStatisticDeployer.generateLayout()
-    const statisticTableDeployer = new DeployerClass(".statisticTableСell")
+    const statisticTableDeployer = new DeployerClass(".statisticTableСell");
     //statisticTableDeployer.generateLayout()
-    const worldMapDeployer = new DeployerClass(".worldMapСell")
+    const worldMapDeployer = new DeployerClass(".worldMapСell");
     //worldMapDeployer.generateLayout()
-    const chartClassDeployer = new DeployerClass(".chartClassСell", "chartClassDeployer")
+    const chartClassDeployer = new DeployerClass(
+      ".chartClassСell",
+      "chartClassDeployer"
+    );
     //chartClassDeployer.generateLayout()
-    const сountryStatisticСell = create("div", "сountryStatisticСell", сountryStatisticDeployer.generateLayout());
-    const statisticTableСell = create("div", "statisticTableСell", statisticTableDeployer.generateLayout());
-    const worldMapСell = create("div", "worldMapСell", worldMapDeployer.generateLayout());
-    const chartClassСell = create("div", "chartClassСell", chartClassDeployer.generateLayout());
-    const mapChartStatistic_container = create("div", "mapChartStatistic_container", [
-      worldMapСell,
-      statisticTableСell,
-      chartClassСell,
-    ])
+    const сountryStatisticСell = create(
+      "div",
+      "сountryStatisticСell",
+      сountryStatisticDeployer.generateLayout()
+    );
+    const statisticTableСell = create(
+      "div",
+      "statisticTableСell",
+      statisticTableDeployer.generateLayout()
+    );
+    const worldMapСell = create(
+      "div",
+      "worldMapСell",
+      worldMapDeployer.generateLayout()
+    );
+    const chartClassСell = create(
+      "div",
+      "chartClassСell",
+      chartClassDeployer.generateLayout()
+    );
+    const mapChartStatistic_container = create(
+      "div",
+      "mapChartStatistic_container",
+      [worldMapСell, statisticTableСell, chartClassСell]
+    );
     document
       .querySelector(".mainContent_container")
-      .append(
-        mapChartStatistic_container,
-        сountryStatisticСell
-      );
+      .append(mapChartStatistic_container, сountryStatisticСell);
     setTimeout(() => {
       let searchBar = new SearchBar();
       searchBar.generateLayout();
-    }, 2000)
-
+    }, 2000);
   }
   generateData() {
     this.countryStatistic = new CountryStatistic();
@@ -59,8 +75,9 @@ class Main {
     this.covid19API.getAll().then((data) => {
       this.statisticTable.createData(data);
       this.statisticTable.generateLayout();
-      this.chartClass.getPopulation(data)
+      this.chartClass.getPopulation(data);
       this.covid19API.getHistoricalAll("all").then((data) => {
+        this.historicalAllData =data
         this.chartClass.createData(data);
         this.chartClass.generateHost();
         this.chartClass.generateLayout();
@@ -72,7 +89,6 @@ class Main {
         this.countryStatistic.generateLayout();
         this.setupListeners();
       });
-
     });
     this.worldMap.generateLayout();
 
@@ -83,17 +99,17 @@ class Main {
     }, 3000);
   }
 
-
-
-  generateChatCountryData(){
-    this.covid19API.getHistoricalCountry(this.choseCountry, "all").then((data) => {
-      this.chartClass.getCountryData(data)
-    })
+  generateChartCountryData() {
+    this.covid19API
+      .getHistoricalCountry(this.choseCountry, "all")
+      .then((data) => {
+        this.chartClass.getCountryData(data);
+        this.chartClass.changeViewForChosenCountry(data)
+      });
   }
   setupListeners() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {
       item.addEventListener("click", (e) => {
-
         if (document.querySelector(".countryStatistic_demo_item__chosen")) {
           document
             .querySelector(".countryStatistic_demo_item__chosen")
@@ -107,12 +123,15 @@ class Main {
         this.choseCountry = country.querySelector(".demo_country").innerHTML;
         document.querySelector(
           ".statisticTable_resultFor"
+        ).textContent = this.choseCountry;        
+        document.querySelector(
+          ".chart_resultFor"
         ).textContent = this.choseCountry;
         this.covid19API.getCountry(this.choseCountry).then((data) => {
           this.statisticTable.changeViewForChosenCountry(data);
           this.worldMap.showCountryBounds(data.countryInfo.iso2);
         });
-        this.generateChatCountryData()
+        this.generateChartCountryData();
       });
     });
     // Add mutation observer for main
@@ -123,6 +142,10 @@ class Main {
         this.countriesData.map((item) => {
           if (item.countryInfo.iso2 == countryCode.trim()) {
             this.choseCountry = item.country;
+            this.covid19API.getCountry(this.choseCountry).then((data) => {
+              this.statisticTable.changeViewForChosenCountry(data);
+            });
+            this.generateChartCountryData();
             if (document.querySelector(".countryStatistic_demo_item__chosen")) {
               document
                 .querySelector(".countryStatistic_demo_item__chosen")
@@ -133,6 +156,9 @@ class Main {
             this.addShowWorldResultButton();
             document.querySelector(
               ".statisticTable_resultFor"
+            ).textContent = this.choseCountry;
+            document.querySelector(
+              ".chart_resultFor"
             ).textContent = this.choseCountry;
           }
         });
@@ -146,23 +172,24 @@ class Main {
     );
   }
   addShowWorldResultButton() {
-    const showWorldResultButton = document.querySelector(
-      ".button_showWorldResult"
-    );
-    showWorldResultButton.classList.remove("button_showWorldResult__hidden");
-    showWorldResultButton.addEventListener("click", () => {
-      this.removeShowWorldResultButton();
+    document.querySelectorAll(".button_showWorldResult").forEach((item) => {
+      item.classList.remove("button_showWorldResult__hidden");
+      item.addEventListener("click", () => {
+        this.removeShowWorldResultButton();
+      });
     });
   }
   removeShowWorldResultButton() {
-    const showWorldResultButton = document.querySelector(
-      ".button_showWorldResult"
-    );
+    document.querySelectorAll(".button_showWorldResult").forEach((item) => {
+      item.classList.add("button_showWorldResult__hidden");
+    });
     this.choseCountry = null;
-    showWorldResultButton.classList.add("button_showWorldResult__hidden");
     this.covid19API.getAll().then((data) => {
       this.statisticTable.changeViewForChosenCountry(data);
     });
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    this.chartClass.createData(this.historicalAllData);
+    this.chartClass.changeView()
     if (document.querySelector(".countryStatistic_demo_item__chosen")) {
       document
         .querySelector(".countryStatistic_demo_item__chosen")
@@ -171,6 +198,14 @@ class Main {
     if (document.querySelector(".statisticTable_resultFor")) {
       document.querySelector(".statisticTable_resultFor").textContent =
         "the world";
+    }
+    if (document.querySelector(".chart_demo_item__chosen")) {
+      document
+        .querySelector(".chart_demo_item__chosen")
+        .classList.remove("chart_demo_item__chosen");
+    }
+    if (document.querySelector(".chart_resultFor")) {
+      document.querySelector(".chart_resultFor").textContent = "the world";
     }
   }
 }

@@ -55,7 +55,6 @@ class StatisticTable {
     const statisticTableHeader = create('div', 'statisticTable_header', 
     create('div','statisticTable_header_resultFor',[
       create('div','statisticTable_header_resultFor_string',[
-        create("h2", null, "result for: "),
         create("h2", "statisticTable_resultFor", "the world")
       ] ),
       create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
