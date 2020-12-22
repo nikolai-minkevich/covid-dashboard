@@ -8,7 +8,6 @@ class Wrapper {
   }*/
   generateLayout() {
     document.body.prepend(create("div", "wrapper", [new Header()]));
-
     const main = new Main();
     main.generateGrid();
     main.generateLayout();
