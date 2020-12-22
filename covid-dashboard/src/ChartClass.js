@@ -6,9 +6,13 @@ class ChartClass {
     this.chosenItem = 0;
     this.chartData = null;
     this.labels = null;
+    this.choisenCountryData = null;
   }
   getPopulation(data) {
     this.population = data.population;
+  }
+  getCountryData(data){
+
   }
   createData(data) {
     this.demoListItems = [
@@ -40,21 +44,27 @@ class ChartClass {
     const chartDataTotalRecoveredPer100000 = chartDataTotalRecovered.map(callBackPer100000);
     const chartDataTodayCases = chartDataTotalCases.map((item, index) => {
       if (index != 0) {
-        return item - chartDataTotalCases[index - 1];
+        let result = item - chartDataTotalCases[index - 1];
+        if(result<0){result= 0}
+        return result
       } else {
         return 0;
       }
     });
     const chartDataTodayDeaths = chartDataTotalDeaths.map((item, index) => {
       if (index != 0) {
-        return item - chartDataTotalDeaths[index - 1];
+        let result =item - chartDataTotalDeaths[index - 1];
+        if(result<0){result= 0}
+        return result
       } else {
         return 0;
       }
     });
     const chartDataTodayRecovered = chartDataTotalRecovered.map((item, index) => {
       if (index != 0) {
-        return item - chartDataTotalRecovered[index - 1];
+        let result =item - chartDataTotalRecovered[index - 1];
+        if(result<0){result= 0}
+        return result
       } else {
         return 0;
       }
@@ -103,7 +113,6 @@ class ChartClass {
       "chartClass__right",
       "chartClass__nameOfItem"
     );
-
     const chartContainer = create("div", "chart_container", [
       hostForChart,
       chartSlider,
