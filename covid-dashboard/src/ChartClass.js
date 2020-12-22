@@ -33,7 +33,7 @@ class ChartClass {
     const chartDataTotalDeaths = Object.values(data["deaths"]);
     const chartDataTotalRecovered = Object.values(data["recovered"]);
     const callBackPer100000 = (item) => {
-      return Math.round((item * 100000) / this.population);
+      return Math.round((item * 10000000) / this.population)/100;
     }
     const chartDataTotalCasesPer100000 = chartDataTotalCases.map(callBackPer100000);
     const chartDataTotalDeathsPer100000 = chartDataTotalDeaths.map(callBackPer100000);
