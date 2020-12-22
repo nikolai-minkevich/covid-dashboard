@@ -64,7 +64,7 @@ class CountryStatistic {
       "countryStatistic_demo_item"
     );
     const slider = new Slider(
-      `${this.demoListItems[this.choisenItem]}`,
+      `${this.demoListItems[this.chosenItem]}`,
       "countryStatistic__left",
       "countryStatistic__right",
       "countryStatistic__nameOfItem"

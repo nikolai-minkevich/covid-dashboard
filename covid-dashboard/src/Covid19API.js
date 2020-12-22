@@ -56,9 +56,6 @@ class Covid19API {
    * @param {string} lastdays - Number of days to return. Use 'all' for the full data set (e.g. 15, all, 24).
    */
   async getHistorical(lastdays = 30) {
-    if (arguments.length === 0) {
-      return this.getCountries();
-    } else {
       return fetch(this.API_SERVER + `/v3/covid-19/historical?lastdays=${lastdays}`, {
         method: "GET"
       })
@@ -67,7 +64,6 @@ class Covid19API {
           return response.json();
         })
         .catch(error => console.log(error));
-    }
   }
 
   /**
@@ -75,9 +71,6 @@ class Covid19API {
    * @param {string} lastdays - Number of days to return. Use 'all' for the full data set (e.g. 15, all, 24).
    */
   async getHistoricalAll(lastdays = 30) {
-    if (arguments.length === 0) {
-      return this.getCountries();
-    } else {
       return fetch(this.API_SERVER + `/v3/covid-19/historical/all?lastdays=${lastdays}`, {
         method: "GET"
       })
@@ -86,7 +79,6 @@ class Covid19API {
           return response.json();
         })
         .catch(error => console.log(error));
-    }
   }
   /**
    * Get global accumulated COVID-19 time series data

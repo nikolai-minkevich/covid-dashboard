@@ -1,13 +1,23 @@
-import ChartJS from "chart.js";
+import Chart from "chart.js";
 import create from "./create";
 import Slider from "./Slider";
 class ChartClass {
-  constructor(){
+  constructor() {
     this.chosenItem = 0;
     this.chartData = null;
-    this.labels =null;
+    this.labels = null;
+    this.choisenCountryData = null;
   }
-  createData(){
+  getPopulation(data) {
+    this.population = data.population;
+  }
+  getCountryData(data){
+    console.log("data.timeline", data.timeline);
+    this.choisenCountryData = data.timeline
+    this.changeViewForChosenCountry(this.choisenCountryData)
+  }
+  createData(data) {
+    console.log(data);
     this.demoListItems = [
       "total cases",
       "total deaths",
@@ -22,45 +32,116 @@ class ChartClass {
       "today deaths per 100000",
       "today recovered per 100000",
     ];
-    //data временный массив, пока не получила api
-    const data = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
-   // this.labels = [];
-    this.chartData = [];
-    this.months = [ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
-/*
-    for (let i = 0; i < data.length; i = i + 5) {
-        let d = new Date(data[i]['Date']);
-        labels.push(d.getDate() + " " + months[d.getMonth()]);
-        chartData.push(data[i]['Cases']);
-    }*/
+    const labelsTotalCases = Object.keys(data["cases"]);
+    const labelsTotalDeaths = Object.keys(data["deaths"]);
+    const labelsTotalRecovered = Object.keys(data["recovered"]);
+
+    const chartDataTotalCases = Object.values(data["cases"]);
+    const chartDataTotalDeaths = Object.values(data["deaths"]);
+    const chartDataTotalRecovered = Object.values(data["recovered"]);
+    const callBackPer100000 = (item) => {
+      return Math.round((item * 10000000) / this.population)/100;
+    }
+    const chartDataTotalCasesPer100000 = chartDataTotalCases.map(callBackPer100000);
+    const chartDataTotalDeathsPer100000 = chartDataTotalDeaths.map(callBackPer100000);
+    const chartDataTotalRecoveredPer100000 = chartDataTotalRecovered.map(callBackPer100000);
+    const chartDataTodayCases = chartDataTotalCases.map((item, index) => {
+      if (index != 0) {
+        let result = item - chartDataTotalCases[index - 1];
+        if(result<0){result= 0}
+        return result
+      } else {
+        return 0;
+      }
+    });
+    const chartDataTodayDeaths = chartDataTotalDeaths.map((item, index) => {
+      if (index != 0) {
+        let result =item - chartDataTotalDeaths[index - 1];
+        if(result<0){result= 0}
+        return result
+      } else {
+        return 0;
+      }
+    });
+    const chartDataTodayRecovered = chartDataTotalRecovered.map((item, index) => {
+      if (index != 0) {
+        let result =item - chartDataTotalRecovered[index - 1];
+        if(result<0){result= 0}
+        return result
+      } else {
+        return 0;
+      }
+    });
+    const chartDataTodayCasesPer100000 =chartDataTodayCases.map(callBackPer100000);
+    const chartDataTodayDeathsPer100000 =chartDataTodayDeaths.map(callBackPer100000);
+    const chartDataTodayRecoveredPer100000 =chartDataTodayRecovered.map(callBackPer100000);
+    this.chartData = [
+      chartDataTotalCases,
+      chartDataTotalDeaths,
+      chartDataTotalRecovered,
+      chartDataTotalCasesPer100000,
+      chartDataTotalDeathsPer100000,
+      chartDataTotalRecoveredPer100000,
+      chartDataTodayCases,
+      chartDataTodayDeaths,
+      chartDataTodayRecovered,
+      chartDataTodayCasesPer100000,
+      chartDataTodayDeathsPer100000,
+      chartDataTodayRecoveredPer100000
+    ];
+    this.labels = [
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+    ];
   }
   generateHost() {
+    const chartHeader = create('div', 'chart_header', 
+    create('div','chart_header_resultFor',[
+      create('div','chart_header_resultFor_string',[
+        create("h2", null, "result for: "),
+        create("h2", "chart_resultFor", "the world")
+      ] ),
+      create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
+    ])
+  )
     const hostForChart = document.createElement("canvas");
+    //hostForChart.height = 300;
+    //hostForChart.width = 400;
     hostForChart.classList.add("hostForChart");
-    console.log("this.demoListItems", this.demoListItems);
     const chartSlider = new Slider(
       `${this.demoListItems[this.chosenItem]}`,
       "chartClass__left",
       "chartClass__right",
       "chartClass__nameOfItem"
     );
-
     const chartContainer = create("div", "chart_container", [
+      chartHeader,
       hostForChart,
       chartSlider,
     ]);
     document.querySelector(".chartClassСell").append(chartContainer);
+    this.setupListeners();
   }
   generateLayout() {
-    let ctx = document.querySelector("canvas");
-    return new Chart(ctx, {
+    let ctx = document.querySelector("canvas").getContext("2d");
+    this.chartConfig = {
       type: "line",
       data: {
-        labels: this.months,
+        labels: this.labels[this.chosenItem],
         datasets: [
           {
-            data: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6],
+            label: '',
+            data: this.chartData[this.chosenItem],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -82,42 +163,57 @@ class ChartClass {
         ],
       },
       options: {
-        title: {
-          display: true,
-          text: "Results",
-        },
         scales: {
           yAxes: [
             {
               ticks: {
                 beginAtZero: true,
-                stepSize: 10000,
+                //stepSize: 10000,
               },
             },
           ],
         },
       },
-    });
+    };
+    this.chartClass = new Chart(ctx, this.chartConfig);
+    return this.chartClass;
   }
   setupListeners() {
     document
       .querySelector(".chartClass__left")
       .addEventListener("click", () => {
-        if (this.choisenItem === 0) {
+        if (this.chosenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
-          this.changeChosenItem(this.choisenItem - 1);
+          this.changeChosenItem(this.chosenItem - 1);
         }
       });
     document
       .querySelector(".chartClass__right")
       .addEventListener("click", () => {
-        if (this.choisenItem === this.demoListItems.length - 1) {
+        if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
-          this.changeChosenItem(this.choisenItem + 1);
+          this.changeChosenItem(this.chosenItem + 1);
         }
       });
+  }
+  changeChosenItem(number) {
+    this.chosenItem = number;
+    this.changeView();
+  }
+  changeView() {
+    document.querySelector(".chartClass__nameOfItem").textContent = `${
+      this.demoListItems[this.chosenItem]
+    }`;
+    this.chartConfig.data.datasets[0].data = this.chartData[this.chosenItem];
+    this.chartConfig.data.labels = this.labels[this.chosenItem];
+    this.chartClass.update();
+  }
+  changeViewForChosenCountry(data){
+    this.choisenCountryData = data;
+    this.createData(this.choisenCountryData)
+    this.changeView()
   }
 }
 export default ChartClass;

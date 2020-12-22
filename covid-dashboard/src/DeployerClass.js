@@ -1,19 +1,31 @@
 const { default: create } = require("./create")
 
 class DeployerClass {
-   constructor(elementClass){
+   constructor(elementClass, deployerClass){
         this.elementClass = elementClass
+        this.deployerClass = deployerClass
     }
     generateLayout() {
-        const deployerContainer = create('div', 'deployer__container', "+")
-        deployerContainer.addEventListener("click", () => {
+        const deployerContainer = create('div', `deployer__container ${this.deployerClass}`, "+")
+        deployerContainer.addEventListener("click", (e) => {
+            this.changeTextContent(e.target)
             this.expand(this.elementClass)
+            //this.expandChart()
         })
         return deployerContainer
     }
   expand(elementClass){
-      
     document.querySelector(`${elementClass}`).classList.toggle('expand')
+  }
+  expandChart(){
+      console.log("skd;fsdkfl;");
+  }
+  changeTextContent(targetDiv){
+    if(targetDiv.textContent ===  "+"){
+        targetDiv.textContent =  "-"
+    }else{
+        targetDiv.textContent = "+"
+    }
   }
 }
 export default DeployerClass;
