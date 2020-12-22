@@ -5,6 +5,7 @@ import Covid19API from "./Covid19API";
 import WorldMap from "./WorldMap";
 import ChartClass from "./ChartClass";
 import DeployerClass from "./DeployerClass";
+import SearchBar from "./SearchBar";
 class Main {
   constructor() {
     this.choseCountry = null;
@@ -43,6 +44,8 @@ class Main {
         mapChartStatistic_container,
         сountryStatisticСell
       );
+    let searchBar = new SearchBar();
+    searchBar.generateLayout();
   }
   generateLayout() {
     this.countryStatistic = new CountryStatistic();
