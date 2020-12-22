@@ -26,7 +26,7 @@ class Main {
     //statisticTableDeployer.generateLayout()
     const worldMapDeployer = new DeployerClass(".worldMapСell")
     //worldMapDeployer.generateLayout()
-    const chartClassDeployer = new DeployerClass(".chartClassСell")
+    const chartClassDeployer = new DeployerClass(".chartClassСell", "chartClassDeployer")
     //chartClassDeployer.generateLayout()
     const сountryStatisticСell = create("div", "сountryStatisticСell",  сountryStatisticDeployer.generateLayout());
     const statisticTableСell = create("div", "statisticTableСell", statisticTableDeployer.generateLayout());

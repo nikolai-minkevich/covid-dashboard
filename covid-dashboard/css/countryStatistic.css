@@ -1,11 +1,11 @@
 .countryStatistic_container__prime{
-    width: 17vw;
+    width: 19vw;
     height: 90vh;
 }
 .countryStatistic_container__prime .statistic_container{
     width: 100%;
-    height: 80vh;
+    height: 90vh;
 }
 .countryStatistic_container__prime .statistic_list{
-    height: 73vh;
+    height: 83vh;
 }

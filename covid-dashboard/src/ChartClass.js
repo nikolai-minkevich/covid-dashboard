@@ -105,9 +105,18 @@ class ChartClass {
     ];
   }
   generateHost() {
+    const chartHeader = create('div', 'chart_header', 
+    create('div','chart_header_resultFor',[
+      create('div','chart_header_resultFor_string',[
+        create("h2", null, "result for: "),
+        create("h2", "chart_resultFor", "the world")
+      ] ),
+      create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
+    ])
+  )
     const hostForChart = document.createElement("canvas");
-    hostForChart.height = 300;
-    hostForChart.width = 400;
+    //hostForChart.height = 300;
+    //hostForChart.width = 400;
     hostForChart.classList.add("hostForChart");
     const chartSlider = new Slider(
       `${this.demoListItems[this.chosenItem]}`,
@@ -116,6 +125,7 @@ class ChartClass {
       "chartClass__nameOfItem"
     );
     const chartContainer = create("div", "chart_container", [
+      chartHeader,
       hostForChart,
       chartSlider,
     ]);
@@ -130,6 +140,7 @@ class ChartClass {
         labels: this.labels[this.chosenItem],
         datasets: [
           {
+            label: '',
             data: this.chartData[this.chosenItem],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
@@ -152,9 +163,6 @@ class ChartClass {
         ],
       },
       options: {
-        title: {
-          display: false,
-        },
         scales: {
           yAxes: [
             {
