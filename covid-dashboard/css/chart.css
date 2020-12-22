@@ -1,6 +1,10 @@
 .hostForChart{
-    height: 30vh;
-    width: 30vw;
+    height: 30vh !important;
+    width: 30vw !important;
+}
+.hostForChart__expand{
+    height: 70vh !important;
+    width: 90vw !important;
 }
 .chart_container .slider_container{
      margin-top: 0px;
