@@ -36,7 +36,7 @@ h6 {
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size  : 1.3em;
   line-height: 1.35em;
   font-weight: 600;
 }
@@ -100,6 +100,7 @@ li {
 @import "./chart.css";
 @import "./mainGrid.css";
 @import "./deployerClass.css";
+@import "./searchBar.css";
 
 /*
 

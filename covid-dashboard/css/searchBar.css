@@ -1,0 +1,13 @@
+.hidden-by-search {
+    display: none;
+}
+
+.search-bar {
+    font-size : 1.2em;
+    margin-top: 2px;
+}
+
+.search-bar:focus {
+    outline: none;
+
+}

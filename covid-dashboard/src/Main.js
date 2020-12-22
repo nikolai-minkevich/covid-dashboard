@@ -5,6 +5,7 @@ import Covid19API from "./Covid19API";
 import WorldMap from "./WorldMap";
 import ChartClass from "./ChartClass";
 import DeployerClass from "./DeployerClass";
+import SearchBar from "./SearchBar";
 class Main {
   constructor() {
     this.choseCountry = null;
@@ -12,8 +13,8 @@ class Main {
   }
   generateGrid() {
     document
-    .querySelector(".wrapper")
-    .append(create("main", "mainContent_container"));
+      .querySelector(".wrapper")
+      .append(create("main", "mainContent_container"));
     /*const deployers = [];
     for(let i =0; i<4;i+=1){
       const deployer = new DeployerClass()
@@ -28,11 +29,11 @@ class Main {
     //worldMapDeployer.generateLayout()
     const chartClassDeployer = new DeployerClass(".chartClassСell")
     //chartClassDeployer.generateLayout()
-    const сountryStatisticСell = create("div", "сountryStatisticСell",  сountryStatisticDeployer.generateLayout());
+    const сountryStatisticСell = create("div", "сountryStatisticСell", сountryStatisticDeployer.generateLayout());
     const statisticTableСell = create("div", "statisticTableСell", statisticTableDeployer.generateLayout());
-    const worldMapСell = create("div", "worldMapСell",  worldMapDeployer.generateLayout());
-    const chartClassСell = create("div", "chartClassСell",  chartClassDeployer.generateLayout());
-    const mapChartStatistic_container = create("div", "mapChartStatistic_container",[
+    const worldMapСell = create("div", "worldMapСell", worldMapDeployer.generateLayout());
+    const chartClassСell = create("div", "chartClassСell", chartClassDeployer.generateLayout());
+    const mapChartStatistic_container = create("div", "mapChartStatistic_container", [
       worldMapСell,
       statisticTableСell,
       chartClassСell,
@@ -43,6 +44,11 @@ class Main {
         mapChartStatistic_container,
         сountryStatisticСell
       );
+    setTimeout(() => {
+      let searchBar = new SearchBar();
+      searchBar.generateLayout();
+    }, 2000)
+
   }
   generateLayout() {
     this.countryStatistic = new CountryStatistic();
@@ -66,10 +72,10 @@ class Main {
         this.worldMap.showStatisticRounds(data);
       });
     }, 3000);
-      const chartClass = new ChartClass();
-      chartClass.createData();
-      chartClass.generateHost();
-      chartClass.generateLayout();
+    const chartClass = new ChartClass();
+    chartClass.createData();
+    chartClass.generateHost();
+    chartClass.generateLayout();
 
   }
   setupListeners() {
