@@ -1,6 +1,7 @@
 .hostForChart{
     height: 30vh !important;
     width: 30vw !important;
+    background-color: white;
 }
 .hostForChart__expand{
     height: 70vh !important;
