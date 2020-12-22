@@ -44,23 +44,29 @@ class Main {
         сountryStatisticСell
       );
   }
-  generateLayout() {
+  generateData() {
     this.countryStatistic = new CountryStatistic();
     this.statisticTable = new StatisticTable();
     this.covid19API = new Covid19API();
-    const chartClass = new ChartClass();
+    this.chartClass = new ChartClass();
     this.worldMap = new WorldMap();
-
     this.covid19API.getAll().then((data) => {
       this.statisticTable.createData(data);
       this.statisticTable.generateLayout();
-      chartClass.getPopulation(data)
+      this.chartClass.getPopulation(data)
+      this.covid19API.getHistoricalAll("all").then((data) => {
+        this.chartClass.createData(data);
+        this.chartClass.generateHost();
+        this.chartClass.generateLayout();
+      });
+
       this.covid19API.getCountries().then((data) => {
         this.countriesData = data;
         this.countryStatistic.createData(data);
         this.countryStatistic.generateLayout();
         this.setupListeners();
       });
+
     });
     this.worldMap.generateLayout();
 
@@ -69,19 +75,18 @@ class Main {
         this.worldMap.showStatisticRounds(data);
       });
     }, 3000);
+  }
 
 
-
-      this.covid19API.getHistoricalAll("all").then((data) => {
-        chartClass.createData(data);
-        chartClass.generateHost();
-        chartClass.generateLayout();
-      });
-
+  generateChatCountryData(){
+    this.covid19API.getHistoricalCountry(this.choseCountry, "all").then((data) => {
+      this.chartClass.getCountryData(data)
+    })
   }
   setupListeners() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item) => {
       item.addEventListener("click", (e) => {
+
         if (document.querySelector(".countryStatistic_demo_item__chosen")) {
           document
             .querySelector(".countryStatistic_demo_item__chosen")
@@ -98,10 +103,9 @@ class Main {
         ).textContent = this.choseCountry;
         this.covid19API.getCountry(this.choseCountry).then((data) => {
           this.statisticTable.changeViewForChosenCountry(data);
-          console.log(data);
           this.worldMap.showCountryBounds(data.countryInfo.iso2);
         });
-        //this.createShowWorldResultButton()
+        this.generateChatCountryData()
       });
     });
     // Add mutation observer for main

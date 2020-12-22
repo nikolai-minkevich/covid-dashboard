@@ -12,9 +12,12 @@ class ChartClass {
     this.population = data.population;
   }
   getCountryData(data){
-
+    console.log("data.timeline", data.timeline);
+    this.choisenCountryData = data.timeline
+    this.changeViewForChosenCountry(this.choisenCountryData)
   }
   createData(data) {
+    console.log(data);
     this.demoListItems = [
       "total cases",
       "total deaths",
@@ -100,7 +103,6 @@ class ChartClass {
       labelsTotalDeaths,
       labelsTotalRecovered,
     ];
-    console.log("this.chartData", this.chartData);
   }
   generateHost() {
     const hostForChart = document.createElement("canvas");
@@ -172,7 +174,6 @@ class ChartClass {
     document
       .querySelector(".chartClass__left")
       .addEventListener("click", () => {
-        console.log("skjdflskdjf");
         if (this.chosenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
@@ -182,7 +183,6 @@ class ChartClass {
     document
       .querySelector(".chartClass__right")
       .addEventListener("click", () => {
-        console.log("this", this);
         if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
@@ -194,38 +194,18 @@ class ChartClass {
     this.chosenItem = number;
     this.changeView();
   }
-
   changeView() {
     document.querySelector(".chartClass__nameOfItem").textContent = `${
       this.demoListItems[this.chosenItem]
     }`;
-    const newUser = [
-      {
-        data: this.chartData[this.chosenItem],
-        backgroundColor: [
-          "rgba(255, 99, 132, 0.2)",
-          "rgba(54, 162, 235, 0.2)",
-          "rgba(255, 206, 86, 0.2)",
-          "rgba(75, 192, 192, 0.2)",
-          "rgba(153, 102, 255, 0.2)",
-          "rgba(255, 159, 64, 0.2)",
-        ],
-        borderColor: [
-          "rgba(255, 99, 132, 1)",
-          "rgba(54, 162, 235, 1)",
-          "rgba(255, 206, 86, 1)",
-          "rgba(75, 192, 192, 1)",
-          "rgba(153, 102, 255, 1)",
-          "rgba(255, 159, 64, 1)",
-        ],
-        borderWidth: 1,
-      },
-    ];
-
     this.chartConfig.data.datasets[0].data = this.chartData[this.chosenItem];
-
     this.chartConfig.data.labels = this.labels[this.chosenItem];
     this.chartClass.update();
+  }
+  changeViewForChosenCountry(data){
+    this.choisenCountryData = data;
+    this.createData(this.choisenCountryData)
+    this.changeView()
   }
 }
 export default ChartClass;
