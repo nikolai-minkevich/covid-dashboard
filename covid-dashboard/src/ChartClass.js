@@ -1,13 +1,16 @@
-import ChartJS from "chart.js";
+import Chart from "chart.js";
 import create from "./create";
 import Slider from "./Slider";
 class ChartClass {
-  constructor(){
+  constructor() {
     this.chosenItem = 0;
     this.chartData = null;
-    this.labels =null;
+    this.labels = null;
   }
-  createData(){
+  getPopulation(data) {
+    this.population = data.population;
+  }
+  createData(data) {
     this.demoListItems = [
       "total cases",
       "total deaths",
@@ -22,23 +25,50 @@ class ChartClass {
       "today deaths per 100000",
       "today recovered per 100000",
     ];
-    //data временный массив, пока не получила api
-    const data = [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6]
-   // this.labels = [];
-    this.chartData = [];
-    this.months = [ "January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December" ];
-/*
-    for (let i = 0; i < data.length; i = i + 5) {
-        let d = new Date(data[i]['Date']);
-        labels.push(d.getDate() + " " + months[d.getMonth()]);
-        chartData.push(data[i]['Cases']);
-    }*/
+    const labelsTotalCases = Object.keys(data["cases"]);
+    const labelsTotalDeaths = Object.keys(data["deaths"]);
+    const labelsTotalRecovered = Object.keys(data["recovered"]);
+
+    const chartDataTotalCases = Object.values(data["cases"]);
+    const chartDataTotalDeaths = Object.values(data["deaths"]);
+    const chartDataTotalRecovered = Object.values(data["recovered"]);
+    const chartDataTotalCasesPer100000 = chartDataTotalCases.map((item) => {
+      console.log(this.population, "this.population");
+      console.log(item, "item");
+      console.log(Math.round((item * 100000) / this.population));
+      let newItem = Math.round((item * 100000) / this.population);
+      return newItem
+      //return /*Math.round(*/ (item * 100000) / this.population;
+    });
+
+    console.log("chartDataTotalCasesPer100000", chartDataTotalCasesPer100000);
+
+    this.chartData = [
+      chartDataTotalCases,
+      chartDataTotalDeaths,
+      chartDataTotalRecovered,
+    ];
+    this.labels = [
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+      labelsTotalCases,
+      labelsTotalDeaths,
+      labelsTotalRecovered,
+    ];
+    console.log("this.chartData", this.chartData);
   }
   generateHost() {
     const hostForChart = document.createElement("canvas");
+    hostForChart.height = 300;
+    hostForChart.width = 400;
     hostForChart.classList.add("hostForChart");
-    console.log("this.demoListItems", this.demoListItems);
     const chartSlider = new Slider(
       `${this.demoListItems[this.chosenItem]}`,
       "chartClass__left",
@@ -51,16 +81,17 @@ class ChartClass {
       chartSlider,
     ]);
     document.querySelector(".chartClassСell").append(chartContainer);
+    this.setupListeners();
   }
   generateLayout() {
-    let ctx = document.querySelector("canvas");
-    return new Chart(ctx, {
+    let ctx = document.querySelector("canvas").getContext("2d");
+    this.chartConfig = {
       type: "line",
       data: {
-        labels: this.months,
+        labels: this.labels[this.chosenItem],
         datasets: [
           {
-            data: [1, 2, 3, 4, 5, 6, 1, 2, 3, 4, 5, 6],
+            data: this.chartData[this.chosenItem],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -83,41 +114,81 @@ class ChartClass {
       },
       options: {
         title: {
-          display: true,
-          text: "Results",
+          display: false,
         },
         scales: {
           yAxes: [
             {
               ticks: {
                 beginAtZero: true,
-                stepSize: 10000,
+                //stepSize: 10000,
               },
             },
           ],
         },
       },
-    });
+    };
+    this.chartClass = new Chart(ctx, this.chartConfig);
+    return this.chartClass;
   }
   setupListeners() {
     document
       .querySelector(".chartClass__left")
       .addEventListener("click", () => {
-        if (this.choisenItem === 0) {
+        console.log("skjdflskdjf");
+        if (this.chosenItem === 0) {
           this.changeChosenItem(this.demoListItems.length - 1);
         } else {
-          this.changeChosenItem(this.choisenItem - 1);
+          this.changeChosenItem(this.chosenItem - 1);
         }
       });
     document
       .querySelector(".chartClass__right")
       .addEventListener("click", () => {
-        if (this.choisenItem === this.demoListItems.length - 1) {
+        console.log("this", this);
+        if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
-          this.changeChosenItem(this.choisenItem + 1);
+          this.changeChosenItem(this.chosenItem + 1);
         }
       });
+  }
+  changeChosenItem(number) {
+    this.chosenItem = number;
+    this.changeView();
+  }
+
+  changeView() {
+    document.querySelector(".chartClass__nameOfItem").textContent = `${
+      this.demoListItems[this.chosenItem]
+    }`;
+    const newUser = [
+      {
+        data: this.chartData[this.chosenItem],
+        backgroundColor: [
+          "rgba(255, 99, 132, 0.2)",
+          "rgba(54, 162, 235, 0.2)",
+          "rgba(255, 206, 86, 0.2)",
+          "rgba(75, 192, 192, 0.2)",
+          "rgba(153, 102, 255, 0.2)",
+          "rgba(255, 159, 64, 0.2)",
+        ],
+        borderColor: [
+          "rgba(255, 99, 132, 1)",
+          "rgba(54, 162, 235, 1)",
+          "rgba(255, 206, 86, 1)",
+          "rgba(75, 192, 192, 1)",
+          "rgba(153, 102, 255, 1)",
+          "rgba(255, 159, 64, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ];
+
+    this.chartConfig.data.datasets[0].data = this.chartData[this.chosenItem];
+
+    this.chartConfig.data.labels = this.labels[this.chosenItem];
+    this.chartClass.update();
   }
 }
 export default ChartClass;

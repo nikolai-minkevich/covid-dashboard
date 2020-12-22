@@ -48,17 +48,20 @@ class Main {
     this.countryStatistic = new CountryStatistic();
     this.statisticTable = new StatisticTable();
     this.covid19API = new Covid19API();
-    this.covid19API.getCountries().then((data) => {
-      this.countriesData = data;
-      this.countryStatistic.createData(data);
-      this.countryStatistic.generateLayout();
-      this.setupListeners();
-    });
+    const chartClass = new ChartClass();
+    this.worldMap = new WorldMap();
+
     this.covid19API.getAll().then((data) => {
       this.statisticTable.createData(data);
       this.statisticTable.generateLayout();
+      chartClass.getPopulation(data)
+      this.covid19API.getCountries().then((data) => {
+        this.countriesData = data;
+        this.countryStatistic.createData(data);
+        this.countryStatistic.generateLayout();
+        this.setupListeners();
+      });
     });
-    this.worldMap = new WorldMap();
     this.worldMap.generateLayout();
 
     setTimeout(() => {
@@ -66,10 +69,14 @@ class Main {
         this.worldMap.showStatisticRounds(data);
       });
     }, 3000);
-      const chartClass = new ChartClass();
-      chartClass.createData();
-      chartClass.generateHost();
-      chartClass.generateLayout();
+
+
+
+      this.covid19API.getHistoricalAll("all").then((data) => {
+        chartClass.createData(data);
+        chartClass.generateHost();
+        chartClass.generateLayout();
+      });
 
   }
   setupListeners() {
