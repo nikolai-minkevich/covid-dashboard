@@ -32,21 +32,49 @@ class ChartClass {
     const chartDataTotalCases = Object.values(data["cases"]);
     const chartDataTotalDeaths = Object.values(data["deaths"]);
     const chartDataTotalRecovered = Object.values(data["recovered"]);
-    const chartDataTotalCasesPer100000 = chartDataTotalCases.map((item) => {
-      console.log(this.population, "this.population");
-      console.log(item, "item");
-      console.log(Math.round((item * 100000) / this.population));
-      let newItem = Math.round((item * 100000) / this.population);
-      return newItem
-      //return /*Math.round(*/ (item * 100000) / this.population;
+    const callBackPer100000 = (item) => {
+      return Math.round((item * 100000) / this.population);
+    }
+    const chartDataTotalCasesPer100000 = chartDataTotalCases.map(callBackPer100000);
+    const chartDataTotalDeathsPer100000 = chartDataTotalDeaths.map(callBackPer100000);
+    const chartDataTotalRecoveredPer100000 = chartDataTotalRecovered.map(callBackPer100000);
+    const chartDataTodayCases = chartDataTotalCases.map((item, index) => {
+      if (index != 0) {
+        return item - chartDataTotalCases[index - 1];
+      } else {
+        return 0;
+      }
     });
-
-    console.log("chartDataTotalCasesPer100000", chartDataTotalCasesPer100000);
-
+    const chartDataTodayDeaths = chartDataTotalDeaths.map((item, index) => {
+      if (index != 0) {
+        return item - chartDataTotalDeaths[index - 1];
+      } else {
+        return 0;
+      }
+    });
+    const chartDataTodayRecovered = chartDataTotalRecovered.map((item, index) => {
+      if (index != 0) {
+        return item - chartDataTotalRecovered[index - 1];
+      } else {
+        return 0;
+      }
+    });
+    const chartDataTodayCasesPer100000 =chartDataTodayCases.map(callBackPer100000);
+    const chartDataTodayDeathsPer100000 =chartDataTodayDeaths.map(callBackPer100000);
+    const chartDataTodayRecoveredPer100000 =chartDataTodayRecovered.map(callBackPer100000);
     this.chartData = [
       chartDataTotalCases,
       chartDataTotalDeaths,
       chartDataTotalRecovered,
+      chartDataTotalCasesPer100000,
+      chartDataTotalDeathsPer100000,
+      chartDataTotalRecoveredPer100000,
+      chartDataTodayCases,
+      chartDataTodayDeaths,
+      chartDataTodayRecovered,
+      chartDataTodayCasesPer100000,
+      chartDataTodayDeathsPer100000,
+      chartDataTodayRecoveredPer100000
     ];
     this.labels = [
       labelsTotalCases,
