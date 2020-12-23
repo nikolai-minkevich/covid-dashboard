@@ -64,7 +64,7 @@ class WorldMap {
                     document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
                 }
 
-                self.showCountryBounds(countryCode)
+                //self.showCountryBounds(countryCode)
 
                 // L.popup()
                 //     .setLatLng(e.latlng)
@@ -148,6 +148,15 @@ class WorldMap {
      * @param {number} size - size (1-10)
      */
     drawRound(lat, lng, size, countryName, countryFlag, sourceName, sourceData) {
+        let self = this;
+        function onMapClick(e) {
+            console.log('latlng', e.latlng);
+            self.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(countryCode => {
+                if (countryCode !== undefined) {
+                    document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
+                }
+            });
+        }
         L.circle([lat, lng], {
             color: 'red',
             fillColor: '#f03',
@@ -155,7 +164,8 @@ class WorldMap {
             radius: size
         })
             .addTo(this.mymap)
-            .bindPopup(`<img src='${countryFlag}' class='map-flag'> ${countryName}, ${sourceName} (${sourceData})`);
+            .on('click', onMapClick)
+            .bindPopup(`<img src='${countryFlag}' class='map-flag'> ${countryName} (${sourceName}: ${sourceData})`);
     }
     /**
      * Show 'statistic rounds' for all countries.
