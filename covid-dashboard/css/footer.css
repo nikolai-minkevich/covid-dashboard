@@ -1,18 +1,19 @@
-header {
-    height          : 40px;
+footer{
+    height          : 30px;
     width           : 100%;
     padding         : 0.1vh;
     background-color: cadetblue;
     display         : flex;
     align-items     : center;
-    margin-bottom   : 10px;
+    margin-top   : 10px;
     display         : flex;
     justify-content : space-around;
     align-items     : center;
     padding-left    : 0.5em;
     padding-right   : 0.5em;
 }
-
-.header-date {
-    text-align: right
+.footer_img{
+    margin-top: 2px;
+    height: 20px;
+    width: 45px;
 }

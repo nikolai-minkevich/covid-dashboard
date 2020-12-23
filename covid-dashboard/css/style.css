@@ -97,6 +97,10 @@ li {
 .hidden{overflow: hidden;}
 
 @media (max-width: 1024px) and (min-width: 500px) {
+  header{
+    height: 80px;
+    line-height: 30px;
+  }
 
   .wrapper {
     width: 500px;
@@ -105,7 +109,7 @@ li {
 
   .mainContent_container {
     width: 500px;
-    height         : 1400px;
+    height         : 1500px;
     flex-direction: column
   }
 }
@@ -121,4 +125,4 @@ li {
 @import "./mainGrid.css";
 @import "./deployerClass.css";
 @import "./searchBar.css";
-
+@import "./footer.css";

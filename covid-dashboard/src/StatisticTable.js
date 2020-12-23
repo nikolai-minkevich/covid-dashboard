@@ -22,9 +22,10 @@ class StatisticTable {
     const totalDeaths = this.data.deaths;
     const totalRecovered = this.data.recovered;
     const total = [totalCases, totalDeaths, totalRecovered];
-    const totalCasesPer100000 = this.data.casesPerOneMillion * 10;
-    const totalDeathsPer100000 = this.data.deathsPerOneMillion * 10;
-    const totalRecoveredPer100000 = this.data.recoveredPerOneMillion * 10;
+    const coefPer1000000 = 10
+    const totalCasesPer100000 = this.data.casesPerOneMillion * coefPer1000000;
+    const totalDeathsPer100000 = this.data.deathsPerOneMillion * coefPer1000000;
+    const totalRecoveredPer100000 = this.data.recoveredPerOneMillion * coefPer1000000;
     const totalPer100000 = [
       totalCasesPer100000,
       totalDeathsPer100000,
