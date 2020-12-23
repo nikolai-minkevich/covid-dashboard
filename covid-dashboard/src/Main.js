@@ -10,7 +10,7 @@ class Main {
   constructor() {
     this.choseCountry = null;
     this.countriesData = null;
-    this.historicalAllData =null;
+    this.historicalAllData = null;
   }
   generateGrid() {
     document
@@ -77,7 +77,7 @@ class Main {
       this.statisticTable.generateLayout();
       this.chartClass.getPopulation(data);
       this.covid19API.getHistoricalAll("all").then((data) => {
-        this.historicalAllData =data
+        this.historicalAllData = data
         this.chartClass.createData(data);
         this.chartClass.generateHost();
         this.chartClass.generateLayout();
@@ -123,7 +123,7 @@ class Main {
         this.choseCountry = country.querySelector(".demo_country").innerHTML;
         document.querySelector(
           ".statisticTable_resultFor"
-        ).textContent = this.choseCountry;        
+        ).textContent = this.choseCountry;
         document.querySelector(
           ".chart_resultFor"
         ).textContent = this.choseCountry;
@@ -154,6 +154,8 @@ class Main {
             const country = document.querySelector(`#${countryCode}`);
             country.classList.add("countryStatistic_demo_item__chosen");
             this.addShowWorldResultButton();
+            // Scroll to element
+            country.parentNode.scrollTop = (country.offsetTop - country.parentNode.offsetHeight / 2 - country.offsetHeight);
             document.querySelector(
               ".statisticTable_resultFor"
             ).textContent = this.choseCountry;
