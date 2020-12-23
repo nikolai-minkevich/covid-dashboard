@@ -73,6 +73,8 @@ class Main {
     this.chartClass = new ChartClass();
     this.worldMap = new WorldMap();
     this.covid19API.getAll().then((data) => {
+      const updatedDate = new Date(data.updated);
+      document.querySelector('.header-date').textContent = `Data updated ${updatedDate.toISOString().toString().replace(/T/gi,' ').slice(0,-8)}`
       this.statisticTable.createData(data);
       this.statisticTable.generateLayout();
       this.chartClass.getPopulation(data);

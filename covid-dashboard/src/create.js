@@ -8,7 +8,6 @@
  */
 
 function create(el, classNames, child, parent, ...dataAttr) {
-  console.log(el, classNames, child, parent, ...dataAttr);
   let element = null;
   try {
     element = document.createElement(el);
