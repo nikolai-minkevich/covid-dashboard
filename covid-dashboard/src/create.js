@@ -1,3 +1,12 @@
+/**
+ * Create an element and insert into DOM.
+ * @param {string} el - tag
+ * @param {string} classNames - space separated string of class names
+ * @param {array} child - array of child nodes
+ * @param {Node} parent - object of parent node
+ * @param  {...any} dataAttr - any attributes [name, value]
+ */
+
 function create(el, classNames, child, parent, ...dataAttr) {
   let element = null;
   try {
