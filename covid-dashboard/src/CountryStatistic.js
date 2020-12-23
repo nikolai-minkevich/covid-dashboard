@@ -26,7 +26,6 @@ class CountryStatistic {
     ];
     this.demoListItems = demoListItems;
     const countries = this.countries;
-    console.log('countries', countries);
     const demoList = [];
     for (let i = 0; i < demoListItems.length; i += 1) {
       demoList.push([]);

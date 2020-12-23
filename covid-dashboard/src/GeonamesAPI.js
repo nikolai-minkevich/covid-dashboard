@@ -20,7 +20,7 @@ class GeonamesAPI {
                 if (!response.ok) throw Error(response.statusText);
                 return response.text();
             })
-            .catch(error => console.log(error));
+            .catch(()=> 'WORLD');
     }
     /**
      * Get country info by iso2 country code.
