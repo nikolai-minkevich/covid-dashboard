@@ -33,6 +33,7 @@
     .mapChartStatistic_container{
         width: 100%;
         flex-direction: column;
+        margin-left: 10px
     }
     .statisticTableСell{
         width: 100%;
@@ -41,9 +42,14 @@
     .сountryStatisticСell{
         width: 100%;
         height:530px;
-        margin-left: 20px;
+        margin-left: 10px;
         margin-top: 20px;
     }
+    .сountryStatisticСell .statistic_container__prime{
+        height: 100%;
+    }
+    .statistic_container__prime {
+        height: 190px;}
     .chart_container, .countryStatistic_container__prime, .chartClassСell{
         width: 100%;
     }

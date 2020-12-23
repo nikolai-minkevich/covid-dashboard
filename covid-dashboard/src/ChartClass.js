@@ -12,7 +12,6 @@ class ChartClass {
     this.population = data.population;
   }
   getCountryData(data){
-    console.log("data.timeline", data.timeline);
     this.choisenCountryData = data.timeline
     
   }
@@ -216,7 +215,8 @@ class ChartClass {
     this.chartClass.update();
   }
   changeViewForChosenCountry(data){
-    this.choisenCountryData = data;
+    this.choisenCountryData = data.timeline;
+    console.log("this.choisenCountryData",this.choisenCountryData);
     this.createData(this.choisenCountryData)
     this.changeView()
   }

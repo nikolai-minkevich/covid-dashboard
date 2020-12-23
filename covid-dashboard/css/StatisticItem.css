@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: center;
     border-top: 2px solid white;
+    cursor: pointer;
 }
 .statistic_list{
     background-color: rgb(217, 255, 242);
@@ -21,5 +22,5 @@
 
 
 .statistic_list::-webkit-scrollbar-thumb {
-    background-color: chartreuse;
+    background-color: rgb(197, 194, 0);
 }
