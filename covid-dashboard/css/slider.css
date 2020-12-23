@@ -12,11 +12,17 @@
 }
 .slider_leftArrow, .slider_rightArrow{
   height: 100%;
-  width: 15%;
+  width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+.slider_leftArrow:hover{
+  background: linear-gradient(to left, crimson,  rgb(192, 21, 55));
+}
+.slider_rightArrow:hover{
+  background: linear-gradient(to right,  crimson, rgb(192, 21, 55));
 }
 .slider_nameOfItem{
   display: flex;

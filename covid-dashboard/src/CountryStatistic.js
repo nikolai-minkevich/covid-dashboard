@@ -26,24 +26,44 @@ class CountryStatistic {
     ];
     this.demoListItems = demoListItems;
     const countries = this.countries;
+    console.log('countries', countries);
     const demoList = [];
     for (let i = 0; i < demoListItems.length; i += 1) {
       demoList.push([]);
     }
+    const k = 1000000
+    
     countries.map((item) => {
+      let casesPer1000000 = Math.round(item.cases*k/item.population);
+      if(casesPer1000000 ==NaN|| undefined){casesPer1000000 = 0}
+  
+      let deathsPer1000000 = Math.round(item.deaths*k/item.population);
+      if(deathsPer1000000 ==NaN|| undefined){deathsPer1000000 = 0}
+  
+      let recoveredPer1000000 = Math.round(item.cases*k/item.population);
+      if(recoveredPer1000000 ==NaN|| undefined){recoveredPer1000000 = 0}
+  
+      let todayCasesPer1000000 = Math.round(item.todayCases*k/item.population);
+      if(todayCasesPer1000000 ==NaN|| undefined){todayCasesPer1000000 = 0}
+  
+      let todayDeathsPer1000000 = Math.round(item.todayDeaths*k/item.population);
+      if(todayDeathsPer1000000 == NaN || undefined){todayDeathsPer1000000 = 0}
+  
+      let todayRecoveredPer1000000 = Math.round(item.todayRecovered*k/item.population);
+      if(todayRecoveredPer1000000 ==NaN|| undefined){todayRecoveredPer1000000 = 0}
       const demoListItemsСontent = [
         item.cases,
         item.deaths,
         item.recovered,
-        item.casesPerOneMillion * 10,
-        item.deathsPerOneMillion * 10,
-        item.recoveredPerOneMillion * 10,
+        casesPer1000000,
+        deathsPer1000000,
+        recoveredPer1000000,
         item.todayCases,
         item.todayDeaths,
         item.todayRecovered,
-        (item.todayCases * 100000) / item.population,
-        (item.todayDeaths * 100000) / item.population,
-        (item.todayRecovered * 100000) / item.population,
+        todayCasesPer1000000,
+        todayDeathsPer1000000,
+        todayRecoveredPer1000000,
       ];
       for (let i = 0; i < demoList.length; i += 1) {
         demoList[i].push({

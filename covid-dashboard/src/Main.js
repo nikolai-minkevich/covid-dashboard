@@ -103,6 +103,7 @@ class Main {
     this.covid19API
       .getHistoricalCountry(this.choseCountry, "all")
       .then((data) => {
+        console.log("countrydata", data);
         this.chartClass.getCountryData(data);
         this.chartClass.changeViewForChosenCountry(data)
       });

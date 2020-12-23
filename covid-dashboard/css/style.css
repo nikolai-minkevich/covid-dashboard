@@ -99,6 +99,7 @@ li {
 @media (max-width: 1024px) and (min-width: 500px) {
 
   .wrapper {
+    width: 500px;
     height         : 1600px;
   }
 
