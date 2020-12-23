@@ -171,6 +171,9 @@ class ChartClass {
             },
           ],
         },
+        legend:{
+          display:false,
+        }
       },
     };
     this.chartClass = new Chart(ctx, this.chartConfig);
