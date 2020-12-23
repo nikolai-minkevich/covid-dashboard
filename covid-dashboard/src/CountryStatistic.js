@@ -49,7 +49,8 @@ class CountryStatistic {
         demoList[i].push({
           country: item.country,
           score: demoListItemsСontent[i],
-          countryCode:  item.countryInfo.iso2
+          countryCode:  item.countryInfo.iso2,
+          countryFlag: item.countryInfo.flag
         });
         demoList[i].sort((a, b) => (a.score < b.score ? 1 : -1));
       }

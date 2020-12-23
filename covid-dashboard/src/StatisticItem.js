@@ -1,12 +1,12 @@
 import create from "./create";
 
 class StatisticItem {
-  constructor(itemName, demoList, showCountry, className, countryFlag = "https://disease.sh/assets/img/flags/in.png") {
+  constructor(itemName, demoList, showCountry, className) {
+
     this.demoList = demoList;
     this.itemName = itemName;
     this.showCountry = showCountry;
     this.className = className;
-    this.countryFlag = countryFlag;
     return this.generateLayout();
   }
   generateLayout() {
@@ -18,15 +18,18 @@ class StatisticItem {
       let demoCountry = null;
       // 
       if (this.showCountry) {
-        let countryFlag = create("img", "map-flag", this.countryFlag);
+        let countryHeader = document.createElement("div")
+        let countryFlag = document.createElement("img")
+        countryFlag.src = demoList[i].countryFlag;
+        countryFlag.className = "map-flag";
+        demoCountry = create("span", "demo_country", `${demoList[i].country}`,);
+        countryHeader.append(countryFlag, demoCountry)
         demoNumber = create("span", "demo_number", `${demoList[i].score}`);
-        demoCountry = create("span", "demo_country", `${demoList[i].country}`);
-        demoItem = create("div", `demo_item ${this.className}`, [countryFlag, demoNumber, demoCountry], null, ['id', `${demoList[i].countryCode}`]);
+
+        demoItem = create("div", `demo_item ${this.className}`, [countryHeader, demoNumber], null, ['id', `${demoList[i].countryCode}`]);
       } else {
         demoItem = create("div", `demo_item ${this.className}`, [demoNumber, demoCountry]);
       }
-
-
       statisticList.append(demoItem);
     }
 

@@ -4,7 +4,7 @@
  * @param {string} classNames - space separated string of class names
  * @param {array} child - array of child nodes
  * @param {Node} parent - object of parent node
- * @param  {...any} dataAttr - any attributes [name, value]
+ * @param {...any} dataAttr - any attributes [name, value]
  */
 
 function create(el, classNames, child, parent, ...dataAttr) {
