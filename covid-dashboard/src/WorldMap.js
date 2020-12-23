@@ -1,6 +1,7 @@
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 let convert = require('xml-js')
+import Slider from "./Slider";
 
 //import countries from '../assets/data/countries.json'
 
@@ -21,9 +22,12 @@ class WorldMap {
         console.log('worldmap generateLayout');
         this.worldMap = document.createElement('div');
         this.worldMap.id = 'mapid';
+        let worldMapContainer = document.createElement('div');
+        worldMapContainer.className='world-map-container';
+        worldMapContainer.append(this.worldMap)
         /* Need to fix this */
         setTimeout(() => {
-            document.querySelector('.worldMapСell').append(this.worldMap);
+            document.querySelector('.worldMapСell').append(worldMapContainer);
             this.init();
         }, 1500)
 
@@ -37,7 +41,6 @@ class WorldMap {
     //             this.countries = response.json();
     //         })
     //         .catch(error => console.log(error));
-
     // }
 
     init() {
@@ -104,8 +107,30 @@ class WorldMap {
         // this.mymap.on('mouseout', function (e) {
         //     closePopup();
         // });
-
-
+        this.chosenItem = 0;
+        this.demoListItems = [
+            "total cases",
+            "total deaths",
+            "total recovered",
+            "total cases per 100000",
+            "total deaths per 100000",
+            "total recovered per 100000",
+            "today cases",
+            "today deaths",
+            "today recovered",
+            "today cases per 100000",
+            "today deaths per 100000",
+            "today recovered per 100000",
+        ];
+        // Add slider
+        const worldMapSlider = new Slider(
+            `${this.demoListItems[this.chosenItem]}`,
+            "worldMap__left",
+            "worldMap__right",
+            "worldMap__nameOfItem"
+        );
+        document.querySelector('.world-map-container').append(worldMapSlider);
+        
 
     }
     /**

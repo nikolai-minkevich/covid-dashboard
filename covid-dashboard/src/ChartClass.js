@@ -16,7 +16,6 @@ class ChartClass {
     
   }
   createData(data) {
-    console.log(data);
     this.demoListItems = [
       "total cases",
       "total deaths",
