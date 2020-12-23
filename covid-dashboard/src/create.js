@@ -8,6 +8,7 @@
  */
 
 function create(el, classNames, child, parent, ...dataAttr) {
+  console.log(el, classNames, child, parent, ...dataAttr);
   let element = null;
   try {
     element = document.createElement(el);
@@ -17,15 +18,15 @@ function create(el, classNames, child, parent, ...dataAttr) {
   if (classNames) element.classList.add(...classNames.split(" ")); // "class1 class2 class3"
   if (child && Array.isArray(child)) {
     child.forEach(
-      (childElement) => childElement && element.appendChild(childElement)
+      (childElement) => childElement && element.append(childElement)
     );
   } else if (child && typeof child === "object") {
-    element.appendChild(child);
+    element.append(child);
   } else if (child && typeof child === "string") {
     element.innerHTML = child;
   }
   if (parent) {
-    parent.appendChild(element);
+    parent.append(element);
   }
   if (dataAttr.length) {
     dataAttr.forEach(([attrName, attrValue]) => {
