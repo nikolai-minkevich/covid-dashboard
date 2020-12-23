@@ -8,6 +8,8 @@ class DeployerClass {
     generateLayout() {
         const deployerContainer = create('div', `deployer__container ${this.deployerClass}`, "+")
         deployerContainer.addEventListener("click", (e) => {
+            document.querySelector("body").classList.toggle("hidden")
+            document.querySelector("header").classList.toggle("header_hidden")
             this.changeTextContent(e.target)
             this.expand(this.elementClass)
             //this.expandChart()

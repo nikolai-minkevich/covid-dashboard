@@ -11,6 +11,7 @@
 }
 .сountryStatisticСell{
     width: 220px;
+    height: 100%;
 }
 
 .worldMapСell{
@@ -26,4 +27,25 @@
 .statisticTableСell{
     width: 40%;
     height: 330px;
+}
+
+@media (max-width: 1024px) and (min-width: 500px) {
+    .mapChartStatistic_container{
+        width: 100%;
+        flex-direction: column;
+    }
+    .statisticTableСell{
+        width: 100%;
+        height: 200px;
+    }
+    .сountryStatisticСell{
+        width: 100%;
+        height:530px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    .chart_container, .countryStatistic_container__prime, .chartClassСell{
+        width: 100%;
+    }
+
 }
