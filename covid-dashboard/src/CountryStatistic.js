@@ -31,25 +31,25 @@ class CountryStatistic {
       demoList.push([]);
     }
     const k = 1000000
-    
+
     countries.map((item) => {
-      let casesPer1000000 = Math.round(item.cases*k/item.population);
-      if(casesPer1000000 ==NaN|| undefined){casesPer1000000 = 0}
-  
-      let deathsPer1000000 = Math.round(item.deaths*k/item.population);
-      if(deathsPer1000000 ==NaN|| undefined){deathsPer1000000 = 0}
-  
-      let recoveredPer1000000 = Math.round(item.cases*k/item.population);
-      if(recoveredPer1000000 ==NaN|| undefined){recoveredPer1000000 = 0}
-  
-      let todayCasesPer1000000 = Math.round(item.todayCases*k/item.population);
-      if(todayCasesPer1000000 ==NaN|| undefined){todayCasesPer1000000 = 0}
-  
-      let todayDeathsPer1000000 = Math.round(item.todayDeaths*k/item.population);
-      if(todayDeathsPer1000000 == NaN || undefined){todayDeathsPer1000000 = 0}
-  
-      let todayRecoveredPer1000000 = Math.round(item.todayRecovered*k/item.population);
-      if(todayRecoveredPer1000000 ==NaN|| undefined){todayRecoveredPer1000000 = 0}
+      let casesPer1000000 = Math.round(item.cases * k / item.population);
+      if (isNaN(casesPer1000000) || undefined) { casesPer1000000 = 0 }
+
+      let deathsPer1000000 = Math.round(item.deaths * k / item.population);
+      if (isNaN(deathsPer1000000) || undefined) { deathsPer1000000 = 0 }
+
+      let recoveredPer1000000 = Math.round(item.cases * k / item.population);
+      if (isNaN(recoveredPer1000000) || undefined) { recoveredPer1000000 = 0 }
+
+      let todayCasesPer1000000 = Math.round(item.todayCases * k / item.population);
+      if (isNaN(todayCasesPer1000000) || undefined) { todayCasesPer1000000 = 0 }
+
+      let todayDeathsPer1000000 = Math.round(item.todayDeaths * k / item.population);
+      if (isNaN(todayDeathsPer1000000) || undefined) { todayDeathsPer1000000 = 0 }
+
+      let todayRecoveredPer1000000 = Math.round(item.todayRecovered * k / item.population);
+      if (isNaN(todayRecoveredPer1000000) || undefined) { todayRecoveredPer1000000 = 0 }
       const demoListItemsСontent = [
         item.cases,
         item.deaths,
@@ -68,7 +68,7 @@ class CountryStatistic {
         demoList[i].push({
           country: item.country,
           score: demoListItemsСontent[i],
-          countryCode:  item.countryInfo.iso2,
+          countryCode: item.countryInfo.iso2,
           countryFlag: item.countryInfo.flag
         });
         demoList[i].sort((a, b) => (a.score < b.score ? 1 : -1));
@@ -106,7 +106,7 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__left")
       .addEventListener("click", () => {
-        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+        if (document.querySelector(".countryStatistic_demo_item__chosen")) {
           document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
         }
         if (this.chosenItem === 0) {
@@ -118,7 +118,7 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__right")
       .addEventListener("click", () => {
-        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+        if (document.querySelector(".countryStatistic_demo_item__chosen")) {
           document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
         }
         if (this.chosenItem === this.demoListItems.length - 1) {
@@ -142,6 +142,6 @@ class CountryStatistic {
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
   }
-  
+
 }
 export default CountryStatistic;
