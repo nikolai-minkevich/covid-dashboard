@@ -122,5 +122,6 @@ class CountryStatistic {
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
   }
+  
 }
 export default CountryStatistic;

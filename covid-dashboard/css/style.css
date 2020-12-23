@@ -88,8 +88,12 @@ li {
 .mainContent_container {
   display        : flex;
   justify-content: space-between;
-  width          : 100%;
+
+
+
+  width          : 80vw;
   height         : 90vh;
+  margin: 0 auto;
 }
 
 @import "./statisticTable";

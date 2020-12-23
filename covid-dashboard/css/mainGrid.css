@@ -2,14 +2,27 @@
     display: flex;
     flex-wrap: wrap;
     height: 90vh;
+    width: 62vw;
+    justify-content: flex-start;
 }
 .сountryStatisticСell, .statisticTableСell, .worldMapСell, .chartClassСell{
     display: flex;
 }
 .сountryStatisticСell{
-    width: 18.8vw;
+    width: 21vw;
 }
 
 .worldMapСell{
-height: 40vh;
+    width: 61vw;
+    height: 49vh;
+    margin-bottom: 1vh;
+    display: flex;
+}
+.chartClassСell{
+    width: 32vw;
+    height: 40vh;
+}
+.statisticTableСell{
+    width: 29vw;
+    height: 40vh;
 }

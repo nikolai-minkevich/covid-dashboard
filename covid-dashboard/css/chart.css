@@ -7,6 +7,10 @@
     height: 70vh !important;
     width: 90vw !important;
 }
+.chart_container{
+    width: 32vw;
+    height: 30vh;
+}
 .chart_container .slider_container{
      margin-top: 0px;
      height: 5vh;

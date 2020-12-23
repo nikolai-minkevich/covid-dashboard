@@ -5,4 +5,5 @@ header{
     background-color: cadetblue;
     display: flex;
     align-items: center;
+    margin-bottom: 1vh;
 }
