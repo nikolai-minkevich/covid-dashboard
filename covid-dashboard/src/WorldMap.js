@@ -68,14 +68,42 @@ class WorldMap {
 
                 // L.popup()
                 //     .setLatLng(e.latlng)
-                //     .setContent(data)
-                //     .openOn(this.mymap);
+                //     .setContent(countryCode)
+                //     .openOn(self.mymap);
             });
-
         }
+
+        // function onMapHover(e) {
+        //     console.log('latlng', e.latlng);
+        //     self.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(countryCode => {
+        //         if (countryCode !== undefined) {
+        //             document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
+        //         }
+
+        //         //self.showCountryBounds(countryCode)
+
+        //         L.popup()
+        //             .setLatLng(e.latlng)
+        //             .setContent(countryCode)
+        //             .openOn(self.mymap);
+        //     });
+        // }
+
         this.mymap.on('click', onMapClick);
 
-        // Add rounds with statistic
+        // this.mymap.on('mouseover', onMapHover);
+
+        // this.mymap.on('mouseover', function (e) {
+        //     console.log(e.latlng);
+        //     //open popup;
+        //     L.popup()
+        //         .setLatLng(e.latlng)
+        //         .setContent("Text")
+        //         .openOn(this.mymap);
+        // });
+        // this.mymap.on('mouseout', function (e) {
+        //     closePopup();
+        // });
 
 
 
@@ -119,7 +147,16 @@ class WorldMap {
      * @param {number} lng - longitude
      * @param {number} size - size (1-10)
      */
-    drawRound(lat, lng, size, countryName, countryFlag) {
+    drawRound(lat, lng, size, countryName, countryFlag, sourceName, sourceData) {
+        let self = this;
+        function onMapClick(e) {
+            console.log('latlng', e.latlng);
+            self.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(countryCode => {
+                if (countryCode !== undefined) {
+                    document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
+                }
+            });
+        }
         L.circle([lat, lng], {
             color: 'red',
             fillColor: '#f03',
@@ -127,7 +164,8 @@ class WorldMap {
             radius: size
         })
             .addTo(this.mymap)
-            .bindPopup(`<img src='${countryFlag}' class='map-flag'> ${countryName}`);
+            .on('click', onMapClick)
+            .bindPopup(`<img src='${countryFlag}' class='map-flag'> ${countryName} (${sourceName}: ${sourceData})`);
     }
     /**
      * Show 'statistic rounds' for all countries.
@@ -136,10 +174,11 @@ class WorldMap {
      * @param {number} coefficient - how much we need to multiply selected parameter (0.1 by default)
      */
     showStatisticRounds(data, source = "cases", coefficient = 0.1) {
-        // 
-
         data.forEach(country => {
-            this.drawRound(country.countryInfo.lat, country.countryInfo.long, country[source] * coefficient, country.country, country.countryInfo.flag)
+            this.drawRound(country.countryInfo.lat, country.countryInfo.long,
+                country[source] * coefficient,
+                country.country, country.countryInfo.flag,
+                source, country[source])
         });
 
         /*
