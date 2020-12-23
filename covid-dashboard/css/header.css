@@ -1,8 +1,9 @@
 header{
-    height: 6vh;
+    height: 40px;
     width: 100%;
     padding: 0.1vh;
     background-color: cadetblue;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }

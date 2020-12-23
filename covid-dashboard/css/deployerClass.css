@@ -19,52 +19,41 @@
     cursor: pointer;
 }
 .expand{
-    height: 90vh;
-    width         : 98vw;
-    position: absolute;
+    height: 100vh;
+    width         :1020px;
+    position: fixed;
     z-index: 1000;
-    background-color: white
-}
-
-.expand #mapid{
-    align-self: center;
-    width         : 90vw;
-    height: 80vh;
-}
-.expand .countryStatistic_container__prime{
-    align-self: center;
-    width         : 90vw;
-    height: 80vh;
+    background-color: white;
+    margin: 0 auto;
 }
 .expand .statistic_container__prime{
-    align-self: center;
-    width         : 90vw;
-    height: 80vh;
+    width: 100%;
 }
-.statisticTableСell.expand .statistic_container{
-    width: 29.8vw;
-    height: 90%;
-}
-.statisticTableСell.expand .statistic_list{
-    height: 90%;
-}
-.statisticTableСell.expand .demo_item{
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-.expand .countryStatistic_container__prime .statistic_container {
-    height: 75vh;
-}
-
-
 .expand .chart_container{
-    align-self: center;
-    width         : 90vw;
-    height: 70vh;
+    width: 100%;
+}
+.header_hidden{
+    visibility: hidden;
+    height: 0px;
+    margin: 0px;
+}
+.hostForChart__expand{
+    height: 500px !important;
+    width: 800px !important;
 }
 
-
+@media (max-width: 1024px) and (min-width: 500px) {
+    .expand{
+        height         : 1600px;
+        width         :500px;
+    }
+    .expand #mapid{
+        height: 80vh;}
+    .expand .countryStatistic_container__prime{
+        height: 80vh;
+    }
+    .hostForChart__expand{
+        height: 500px !important;
+        width: 500px !important;
+    }
+}

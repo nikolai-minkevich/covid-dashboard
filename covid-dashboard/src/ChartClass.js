@@ -14,7 +14,7 @@ class ChartClass {
   getCountryData(data){
     console.log("data.timeline", data.timeline);
     this.choisenCountryData = data.timeline
-    this.changeViewForChosenCountry(this.choisenCountryData)
+    
   }
   createData(data) {
     console.log(data);
