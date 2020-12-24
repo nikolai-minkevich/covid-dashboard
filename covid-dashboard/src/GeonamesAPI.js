@@ -4,7 +4,7 @@ http://api.geonames.org/countryCode?lat=47.03&lng=10.2&username=nikolai_minkevic
 */
 class GeonamesAPI {
     constructor() {
-        this.API_SERVER = 'http://api.geonames.org/';
+        this.API_SERVER = 'https://secure.geonames.org/';
         this.username = 'nikolai_minkevich'
     }
     /**
