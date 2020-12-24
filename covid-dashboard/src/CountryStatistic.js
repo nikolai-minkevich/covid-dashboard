@@ -30,26 +30,29 @@ class CountryStatistic {
     for (let i = 0; i < demoListItems.length; i += 1) {
       demoList.push([]);
     }
-    const k = 1000000
 
+    const coefPer1000000 = 1000000
+    
     countries.map((item) => {
-      let casesPer1000000 = Math.round(item.cases * k / item.population);
-      if (isNaN(casesPer1000000) || undefined) { casesPer1000000 = 0 }
+      if (item.population < 1) item.population = coefPer1000000;
+      let casesPer1000000 = Math.round(item.cases*coefPer1000000/item.population);
+      if(casesPer1000000 ==NaN|| undefined){casesPer1000000 = 0}
+  
+      let deathsPer1000000 = Math.round(item.deaths*coefPer1000000/item.population);
+      if(deathsPer1000000 ==NaN|| undefined){deathsPer1000000 = 0}
+  
+      let recoveredPer1000000 = Math.round(item.cases*coefPer1000000/item.population);
+      if(recoveredPer1000000 ==NaN|| undefined){recoveredPer1000000 = 0}
+  
+      let todayCasesPer1000000 = Math.round(item.todayCases*coefPer1000000/item.population);
+      if(todayCasesPer1000000 ==NaN|| undefined){todayCasesPer1000000 = 0}
+  
+      let todayDeathsPer1000000 = Math.round(item.todayDeaths*coefPer1000000/item.population);
+      if(todayDeathsPer1000000 == NaN || undefined){todayDeathsPer1000000 = 0}
+  
+      let todayRecoveredPer1000000 = Math.round(item.todayRecovered*coefPer1000000/item.population);
+      if(todayRecoveredPer1000000 ==NaN|| undefined){todayRecoveredPer1000000 = 0}
 
-      let deathsPer1000000 = Math.round(item.deaths * k / item.population);
-      if (isNaN(deathsPer1000000) || undefined) { deathsPer1000000 = 0 }
-
-      let recoveredPer1000000 = Math.round(item.cases * k / item.population);
-      if (isNaN(recoveredPer1000000) || undefined) { recoveredPer1000000 = 0 }
-
-      let todayCasesPer1000000 = Math.round(item.todayCases * k / item.population);
-      if (isNaN(todayCasesPer1000000) || undefined) { todayCasesPer1000000 = 0 }
-
-      let todayDeathsPer1000000 = Math.round(item.todayDeaths * k / item.population);
-      if (isNaN(todayDeathsPer1000000) || undefined) { todayDeathsPer1000000 = 0 }
-
-      let todayRecoveredPer1000000 = Math.round(item.todayRecovered * k / item.population);
-      if (isNaN(todayRecoveredPer1000000) || undefined) { todayRecoveredPer1000000 = 0 }
       const demoListItemsСontent = [
         item.cases,
         item.deaths,
@@ -135,10 +138,9 @@ class CountryStatistic {
 
   changeView() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
-      item.firstChild.textContent = this.demoList[this.chosenItem][
-        index
-      ].score;
-      item.lastChild.textContent = this.demoList[this.chosenItem][index].country;
+      item.childNodes[0].src = this.demoList[this.chosenItem][index].countryFlag;
+      item.childNodes[1].textContent = this.demoList[this.chosenItem][index].country;
+      item.childNodes[2].textContent = this.demoList[this.chosenItem][index].score;
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
   }
