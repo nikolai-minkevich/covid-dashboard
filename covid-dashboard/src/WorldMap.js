@@ -33,16 +33,6 @@ class WorldMap {
 
     }
 
-    // getCountryList() {
-    //     return fetch('../assets/data/countries.json')
-    //         .then(response => {
-    //             // console.log('countries', response);
-    //             if (!response.ok) throw Error(response.statusText);
-    //             this.countries = response.json();
-    //         })
-    //         .catch(error => console.log(error));
-    // }
-
     init() {
         this.rounds = [];
         this.mymap = L.map(this.worldMap.id).setView([30.0, 60.0], 2);
@@ -62,9 +52,7 @@ class WorldMap {
 
         let self = this;
         function onMapClick(e) {
-            console.log('latlng', e.latlng);
             self.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(countryCode => {
-                console.log('countryCode>>',countryCode);
                 if (countryCode !== undefined) {
                     document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
                 }
@@ -90,37 +78,7 @@ class WorldMap {
             "today deaths per 100000",
             "today recovered per 100000",
         ];
-        // active: 9409
-        // activePerOneMillion: 239.21
-        // cases: 50677
-        // casesPerOneMillion: 1288
-        // continent: "Asia"
-        // country: "Afghanistan"
-        // countryInfo:
-        // flag: "https://disease.sh/assets/img/flags/af.png"
-        // iso2: "AF"
-        // iso3: "AFG"
-        // lat: 33
-        // long: 65
-        // _id: 4
-        // __proto__: Object
-        // critical: 93
-        // criticalPerOneMillion: 2.36
-        // deaths: 2110
-        // deathsPerOneMillion: 54
-        // oneCasePerPeople: 776
-        // oneDeathPerPeople: 18642
-        // oneTestPerPeople: 218
-        // population: 39333612
-        // recovered: 39158
-        // recoveredPerOneMillion: 995.54
-        // tests: 180385
-        // testsPerOneMillion: 4586
-        // todayCases: 141
-        // todayDeaths: 56
-        // todayRecovered: 359
-        // updated: 1608485384542 */
-        // Add slider
+
         const worldMapSlider = new Slider(
             `${this.demoListItems[this.chosenItem]}`,
             "worldMap__left",
@@ -157,7 +115,7 @@ class WorldMap {
 
         countries.map((item) => {
             if (item.population < 1) item.population = k;
-            
+
             let casesPer1000000 = Math.round(item.cases * k / item.population);
             if (isNaN(casesPer1000000) || undefined) { casesPer1000000 = 0 }
 
@@ -264,18 +222,20 @@ class WorldMap {
                 if (this.chosenItem === this.demoListItems.length - 1) {
                     this.changeChosenItem(0);
                 } else {
-                    this.changeChosenItem(this.chosenItem + 1);
+                    this.changeChosenItem(parseInt(this.chosenItem) + 1);
                 }
             });
     }
 
     changeChosenItem(number) {
-        console.log('Calling lot ', number);
-        this.chosenItem = number;
-        document.querySelector(".worldMap__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
+        if (this.chosenItem !== parseInt(number)) {
+            document.querySelector('.mainContent_container').setAttribute('data-chosenitem', number);
+            this.chosenItem = parseInt(number);
+            document.querySelector(".worldMap__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
+            this.clearMap(this.mymap);
+            this.showStatisticRounds();
+        }
 
-        this.clearMap(this.mymap);
-        this.showStatisticRounds();
 
     }
 

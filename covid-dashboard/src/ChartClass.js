@@ -11,9 +11,9 @@ class ChartClass {
   getPopulation(data) {
     this.population = data.population;
   }
-  getCountryData(data){
+  getCountryData(data) {
     this.choisenCountryData = data.timeline
-    
+
   }
   createData(data) {
     this.demoListItems = [
@@ -38,7 +38,7 @@ class ChartClass {
     const chartDataTotalDeaths = Object.values(data["deaths"]);
     const chartDataTotalRecovered = Object.values(data["recovered"]);
     const callBackPer100000 = (item) => {
-      return Math.round((item * 10000000) / this.population)/100;
+      return Math.round((item * 10000000) / this.population) / 100;
     }
     const chartDataTotalCasesPer100000 = chartDataTotalCases.map(callBackPer100000);
     const chartDataTotalDeathsPer100000 = chartDataTotalDeaths.map(callBackPer100000);
@@ -46,7 +46,7 @@ class ChartClass {
     const chartDataTodayCases = chartDataTotalCases.map((item, index) => {
       if (index != 0) {
         let result = item - chartDataTotalCases[index - 1];
-        if(result<0){result= 0}
+        if (result < 0) { result = 0 }
         return result
       } else {
         return 0;
@@ -54,8 +54,8 @@ class ChartClass {
     });
     const chartDataTodayDeaths = chartDataTotalDeaths.map((item, index) => {
       if (index != 0) {
-        let result =item - chartDataTotalDeaths[index - 1];
-        if(result<0){result= 0}
+        let result = item - chartDataTotalDeaths[index - 1];
+        if (result < 0) { result = 0 }
         return result
       } else {
         return 0;
@@ -63,16 +63,16 @@ class ChartClass {
     });
     const chartDataTodayRecovered = chartDataTotalRecovered.map((item, index) => {
       if (index != 0) {
-        let result =item - chartDataTotalRecovered[index - 1];
-        if(result<0){result= 0}
+        let result = item - chartDataTotalRecovered[index - 1];
+        if (result < 0) { result = 0 }
         return result
       } else {
         return 0;
       }
     });
-    const chartDataTodayCasesPer100000 =chartDataTodayCases.map(callBackPer100000);
-    const chartDataTodayDeathsPer100000 =chartDataTodayDeaths.map(callBackPer100000);
-    const chartDataTodayRecoveredPer100000 =chartDataTodayRecovered.map(callBackPer100000);
+    const chartDataTodayCasesPer100000 = chartDataTodayCases.map(callBackPer100000);
+    const chartDataTodayDeathsPer100000 = chartDataTodayDeaths.map(callBackPer100000);
+    const chartDataTodayRecoveredPer100000 = chartDataTodayRecovered.map(callBackPer100000);
     this.chartData = [
       chartDataTotalCases,
       chartDataTotalDeaths,
@@ -103,14 +103,14 @@ class ChartClass {
     ];
   }
   generateHost() {
-    const chartHeader = create('div', 'chart_header', 
-    create('div','chart_header_resultFor',[
-      create('div','chart_header_resultFor_string',[
-        create("h2", "chart_resultFor", "the world")
-      ] ),
-      create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
-    ])
-  )
+    const chartHeader = create('div', 'chart_header',
+      create('div', 'chart_header_resultFor', [
+        create('div', 'chart_header_resultFor_string', [
+          create("h2", "chart_resultFor", "the world")
+        ]),
+        create("div", "button_showWorldResult button_showWorldResult__hidden", "results for the world")
+      ])
+    )
     const hostForChart = document.createElement("canvas");
     //hostForChart.height = 300;
     //hostForChart.width = 400;
@@ -170,8 +170,8 @@ class ChartClass {
             },
           ],
         },
-        legend:{
-          display:false,
+        legend: {
+          display: false,
         }
       },
     };
@@ -194,31 +194,34 @@ class ChartClass {
         if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
-          this.changeChosenItem(this.chosenItem + 1);
+          this.changeChosenItem(parseInt(this.chosenItem) + 1);
         }
       });
-      document.querySelector(".chartClassDeployer").addEventListener("click", () => {
-        document.querySelector(".hostForChart").classList.toggle("hostForChart__expand")
-        this.chartClass.update();
-      }
-      
-      )
+    document.querySelector(".chartClassDeployer").addEventListener("click", () => {
+      document.querySelector(".hostForChart").classList.toggle("hostForChart__expand")
+      this.chartClass.update();
+    }
+
+    )
   }
   changeChosenItem(number) {
-    this.chosenItem = number;
-    this.changeView();
+    if (this.chosenItem !== parseInt(number)) {
+      document.querySelector('.mainContent_container').setAttribute('data-chosenitem', number);
+      this.chosenItem = parseInt(number);
+      this.changeView();
+    }
+
   }
   changeView() {
-    document.querySelector(".chartClass__nameOfItem").textContent = `${
-      this.demoListItems[this.chosenItem]
-    }`;
+    document.querySelector(".chartClass__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]
+      }`;
     this.chartConfig.data.datasets[0].data = this.chartData[this.chosenItem];
     this.chartConfig.data.labels = this.labels[this.chosenItem];
     this.chartClass.update();
   }
-  changeViewForChosenCountry(data){
+  changeViewForChosenCountry(data) {
     this.choisenCountryData = data.timeline;
-    console.log("this.choisenCountryData",this.choisenCountryData);
+    console.log("this.choisenCountryData", this.choisenCountryData);
     this.createData(this.choisenCountryData)
     this.changeView()
   }

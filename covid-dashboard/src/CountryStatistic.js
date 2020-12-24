@@ -127,13 +127,18 @@ class CountryStatistic {
         if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
-          this.changeChosenItem(this.chosenItem + 1);
+          this.changeChosenItem(parseInt(this.chosenItem) + 1);
         }
       });
   }
   changeChosenItem(number) {
-    this.chosenItem = number;
-    this.changeView();
+    if (this.chosenItem !== parseInt(number)) {
+      document.querySelector('.mainContent_container').setAttribute('data-chosenitem', number);
+      this.chosenItem = parseInt(number);
+      this.changeView();
+    }
+
+
   }
 
   changeView() {

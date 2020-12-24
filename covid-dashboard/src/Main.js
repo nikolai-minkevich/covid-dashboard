@@ -134,6 +134,17 @@ class Main {
     });
     // Add mutation observer for main
     let mainContainerObserver = new MutationObserver((mutationRecords) => {
+      if (mutationRecords[0].attributeName === "data-chosenitem") {
+        const chosenItem = document.querySelector(".mainContent_container").dataset.chosenitem;
+        console.log(chosenItem);
+        this.countryStatistic.changeChosenItem(chosenItem)
+        this.chartClass.changeChosenItem(chosenItem)
+        this.worldMap.changeChosenItem(chosenItem)
+        if ((parseInt(chosenItem) ) % 3 === 0) {
+          console.log("(parseInt(chosenItem)",(parseInt(chosenItem)));
+          this.statisticTable.changeChosenItem(((parseInt(chosenItem)) / 3))
+        }
+      }
       if (mutationRecords[0].attributeName === "data-country") {
         const countryCode = document.querySelector(".mainContent_container")
           .dataset.country;
