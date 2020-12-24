@@ -31,9 +31,11 @@ class CountryStatistic {
     for (let i = 0; i < demoListItems.length; i += 1) {
       demoList.push([]);
     }
+
     const coefPer1000000 = 1000000
     
     countries.map((item) => {
+      if (item.population < 1) item.population = coefPer1000000;
       let casesPer1000000 = Math.round(item.cases*coefPer1000000/item.population);
       if(casesPer1000000 ==NaN|| undefined){casesPer1000000 = 0}
   
@@ -51,6 +53,7 @@ class CountryStatistic {
   
       let todayRecoveredPer1000000 = Math.round(item.todayRecovered*coefPer1000000/item.population);
       if(todayRecoveredPer1000000 ==NaN|| undefined){todayRecoveredPer1000000 = 0}
+
       const demoListItemsСontent = [
         item.cases,
         item.deaths,
@@ -69,7 +72,7 @@ class CountryStatistic {
         demoList[i].push({
           country: item.country,
           score: demoListItemsСontent[i],
-          countryCode:  item.countryInfo.iso2,
+          countryCode: item.countryInfo.iso2,
           countryFlag: item.countryInfo.flag
         });
         demoList[i].sort((a, b) => (a.score < b.score ? 1 : -1));
@@ -107,7 +110,7 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__left")
       .addEventListener("click", () => {
-        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+        if (document.querySelector(".countryStatistic_demo_item__chosen")) {
           document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
         }
         if (this.chosenItem === 0) {
@@ -119,7 +122,7 @@ class CountryStatistic {
     document
       .querySelector(".countryStatistic__right")
       .addEventListener("click", () => {
-        if(document.querySelector(".countryStatistic_demo_item__chosen")){
+        if (document.querySelector(".countryStatistic_demo_item__chosen")) {
           document.querySelector(".countryStatistic_demo_item__chosen").classList.remove("countryStatistic_demo_item__chosen")
         }
         if (this.chosenItem === this.demoListItems.length - 1) {
@@ -136,13 +139,12 @@ class CountryStatistic {
 
   changeView() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
-      item.firstChild.textContent = this.demoList[this.chosenItem][
-        index
-      ].score;
-      item.lastChild.textContent = this.demoList[this.chosenItem][index].country;
+      item.childNodes[0].src = this.demoList[this.chosenItem][index].countryFlag;
+      item.childNodes[1].textContent = this.demoList[this.chosenItem][index].country;
+      item.childNodes[2].textContent = this.demoList[this.chosenItem][index].score;
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
   }
-  
+
 }
 export default CountryStatistic;

@@ -19,6 +19,8 @@
     height: 370px;
     margin-bottom: 10px;
     display: flex;
+    /* flex-direction: column; */
+    
 }
 .chartClassСell{
     width: 60%;

@@ -16,7 +16,6 @@ class ChartClass {
     
   }
   createData(data) {
-    console.log(data);
     this.demoListItems = [
       "total cases",
       "total deaths",
@@ -171,6 +170,9 @@ class ChartClass {
             },
           ],
         },
+        legend:{
+          display:false,
+        }
       },
     };
     this.chartClass = new Chart(ctx, this.chartConfig);
