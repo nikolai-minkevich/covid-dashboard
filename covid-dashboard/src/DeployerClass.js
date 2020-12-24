@@ -12,16 +12,14 @@ class DeployerClass {
             document.querySelector("header").classList.toggle("header_hidden")
             this.changeTextContent(e.target)
             this.expand(this.elementClass)
-            //this.expandChart()
+
         })
         return deployerContainer
     }
   expand(elementClass){
     document.querySelector(`${elementClass}`).classList.toggle('expand')
   }
-  expandChart(){
-      console.log("skd;fsdkfl;");
-  }
+
   changeTextContent(targetDiv){
     if(targetDiv.textContent ===  "+"){
         targetDiv.textContent =  "-"

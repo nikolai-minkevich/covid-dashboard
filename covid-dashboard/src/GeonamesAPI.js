@@ -34,10 +34,9 @@ class GeonamesAPI {
         })
             .then(response => {
                 if (!response.ok) throw Error(response.statusText);
-                //console.log('resp', response.text());
                 return response.text();
             })
-            .catch(error => console.log(error));
+            .catch(error => Error(error));
     }
 }
 

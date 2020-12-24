@@ -6,10 +6,8 @@ class SearchBar {
         let searchBar = document.createElement("input")
         searchBar.className = 'search-bar'
         searchBar.placeholder = 'Type for search'
-        searchBar.addEventListener('input', (e) => {
-            console.log('input', e);
+        searchBar.addEventListener('input', () => {
             let searchPhrase = document.querySelector('.search-bar').value
-            console.log("searchPhrase", searchPhrase);
             Array.from(document.querySelectorAll('.countryStatistic_demo_item')).map((item) => {
                 item.classList.remove('hidden-by-search');
             });

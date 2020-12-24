@@ -12,29 +12,22 @@ class WorldMap {
     constructor() {
         this.worldMap = '';
         this.geonamesAPI = new GeonamesAPI();
-        //this.countries = countries
-        // this.getCountryList();
         this.data = []
-        // console.log(this.countries);
     }
 
     generateLayout() {
-        console.log('worldmap generateLayout');
         this.worldMap = document.createElement('div');
         this.worldMap.id = 'mapid';
         let worldMapContainer = document.createElement('div');
         worldMapContainer.className = 'world-map-container';
         worldMapContainer.append(this.worldMap)
-        /* Need to fix this */
         setTimeout(() => {
             document.querySelector('.worldMapСell').append(worldMapContainer);
             this.init();
         }, 1500)
-
     }
 
     init() {
-        this.rounds = [];
         this.mymap = L.map(this.worldMap.id).setView([30.0, 60.0], 2);
         // Default style id: 'mapbox/streets-v11'
         // Blue style id: 'nminkevich/ckiyzis0477jp1aqlqvezwx4l'
@@ -106,7 +99,6 @@ class WorldMap {
         ];
         this.demoListItems = demoListItems;
         const countries = this.countries;
-        console.log('countries', countries);
         const demoList = [];
         for (let i = 0; i < demoListItems.length; i += 1) {
             demoList.push([]);
@@ -296,7 +288,6 @@ class WorldMap {
     drawRound(lat, lng, size, countryName, countryFlag, sourceName, sourceData) {
         let self = this;
         function onMapClick(e) {
-            console.log('latlng', e.latlng);
             self.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(countryCode => {
                 if (countryCode !== undefined) {
                     document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
@@ -304,7 +295,7 @@ class WorldMap {
             });
         }
         if (isNaN(size)) size = 10000;
-        this.rounds.push(L.circle([lat, lng], {
+        L.circle([lat, lng], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
@@ -313,7 +304,7 @@ class WorldMap {
             .addTo(this.mymap)
             .on('click', onMapClick)
             .bindPopup(`<img src='${countryFlag}' class='map-flag'> ${countryName} (${sourceName}: ${sourceData})`)
-        )
+
     }
     /**
      * Show 'statistic rounds' for all countries.
@@ -324,7 +315,6 @@ class WorldMap {
     showStatisticRounds(rawData = null,) {
         if (this.data.length == 0) this.data = this.createData(rawData);
 
-
         this.data[this.chosenItem].forEach(country => {
 
             this.drawRound(country.lat, country.long,
@@ -332,8 +322,6 @@ class WorldMap {
                 country.country, country.countryFlag,
                 country.caseTitle, country.score)
         });
-
-
     }
 
 }

@@ -221,7 +221,6 @@ class ChartClass {
   }
   changeViewForChosenCountry(data) {
     this.choisenCountryData = data.timeline;
-    console.log("this.choisenCountryData", this.choisenCountryData);
     this.createData(this.choisenCountryData)
     this.changeView()
   }
