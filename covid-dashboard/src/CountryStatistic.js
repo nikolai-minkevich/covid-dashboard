@@ -32,8 +32,9 @@ class CountryStatistic {
       demoList.push([]);
     }
     const k = 1000000
-
     countries.map((item) => {
+      if (item.population < 1) item.population = k;
+
       let casesPer1000000 = Math.round(item.cases * k / item.population);
       if (isNaN(casesPer1000000) || undefined) { casesPer1000000 = 0 }
 
