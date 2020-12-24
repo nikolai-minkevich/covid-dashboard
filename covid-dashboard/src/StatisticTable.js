@@ -119,10 +119,11 @@ class StatisticTable {
   }
   changeChosenItem(number) {
     if (this.chosenItem !== parseInt(number)) {
-      //document.querySelector('.mainContent_container').setAttribute('data-chosenitem', number);
+      document.querySelector('.mainContent_container').setAttribute('data-chosenitem', parseInt(number)*3);
       this.chosenItem = number;
       this.changeView();
   }
+
   
   }
 
