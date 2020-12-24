@@ -100,7 +100,6 @@ class Main {
     this.covid19API
       .getHistoricalCountry(this.choseCountry, "all")
       .then((data) => {
-        console.log("countrydata", data);
         this.chartClass.getCountryData(data);
         this.chartClass.changeViewForChosenCountry(data)
       });
@@ -136,12 +135,10 @@ class Main {
     let mainContainerObserver = new MutationObserver((mutationRecords) => {
       if (mutationRecords[0].attributeName === "data-chosenitem") {
         const chosenItem = document.querySelector(".mainContent_container").dataset.chosenitem;
-        console.log(chosenItem);
         this.countryStatistic.changeChosenItem(chosenItem)
         this.chartClass.changeChosenItem(chosenItem)
         this.worldMap.changeChosenItem(chosenItem)
         if ((parseInt(chosenItem) ) % 3 === 0) {
-          console.log("(parseInt(chosenItem)",(parseInt(chosenItem)));
           this.statisticTable.changeChosenItem(((parseInt(chosenItem)) / 3))
         }
       }

@@ -17,7 +17,7 @@ class Covid19API {
         if (!response.ok) throw Error(response.statusText);
         return response.json();
       })
-      .catch(error => console.log(error));
+      .catch(error => Error(error));
   }
   /**
    * Get COVID-19 totals for all countries.
@@ -30,7 +30,7 @@ class Covid19API {
         if (!response.ok) throw Error(response.statusText);
         return response.json();
       })
-      .catch(error => console.log(error));
+      .catch(error => Error(error));
   }
   /**
    * Get COVID-19 totals for selected country.
@@ -47,7 +47,7 @@ class Covid19API {
           if (!response.ok) throw Error(response.statusText);
           return response.json();
         })
-        .catch(error => console.log(error));
+        .catch(error => Error(error));
     }
   }
 
@@ -63,7 +63,7 @@ class Covid19API {
           if (!response.ok) throw Error(response.statusText);
           return response.json();
         })
-        .catch(error => console.log(error));
+        .catch(error => Error(error));
   }
 
   /**
@@ -78,7 +78,7 @@ class Covid19API {
           if (!response.ok) throw Error(response.statusText);
           return response.json();
         })
-        .catch(error => console.log(error));
+        .catch(error => Error(error));
   }
   /**
    * Get global accumulated COVID-19 time series data
@@ -96,7 +96,7 @@ class Covid19API {
           if (!response.ok) throw Error(response.statusText);
           return response.json();
         })
-        .catch(error => console.log(error));
+        .catch(error => Error(error));
     }
   }
 }
