@@ -136,10 +136,9 @@ class CountryStatistic {
 
   changeView() {
     document.querySelectorAll(".countryStatistic_demo_item").forEach((item, index) => {
-      item.firstChild.textContent = this.demoList[this.chosenItem][
-        index
-      ].score;
-      item.lastChild.textContent = this.demoList[this.chosenItem][index].country;
+      item.childNodes[0].src = this.demoList[this.chosenItem][index].countryFlag;
+      item.childNodes[1].textContent = this.demoList[this.chosenItem][index].country;
+      item.childNodes[2].textContent = this.demoList[this.chosenItem][index].score;
     });
     document.querySelector(".countryStatistic__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
   }

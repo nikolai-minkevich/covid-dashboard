@@ -270,23 +270,25 @@ class WorldMap {
         console.log('Calling lot ', number);
         this.chosenItem = number;
         document.querySelector(".worldMap__nameOfItem").textContent = `${this.demoListItems[this.chosenItem]}`
-        //this.rounds.forEach((round) => this.mymap.remove(round))
-        // https://stackoverflow.com/questions/14585688/clear-all-polylines-from-leaflet-map
-        function clearMap(m) {
-            for (let i in m._layers) {
-                if (m._layers[i]._path != undefined) {
-                    try {
-                        m.removeLayer(m._layers[i]);
-                    }
-                    catch (e) {
-                        console.log("problem with " + e + m._layers[i]);
-                    }
+
+        this.clearMap(this.mymap);
+        this.showStatisticRounds();
+
+    }
+
+    // Trick for clear all layer and objects from map
+    // https://stackoverflow.com/questions/14585688/clear-all-polylines-from-leaflet-map
+    clearMap(m) {
+        for (let i in m._layers) {
+            if (m._layers[i]._path != undefined) {
+                try {
+                    m.removeLayer(m._layers[i]);
+                }
+                catch (e) {
+                    console.log("problem with " + e + m._layers[i]);
                 }
             }
         }
-        clearMap(this.mymap);
-        this.showStatisticRounds();
-
     }
 
     /**
@@ -356,7 +358,7 @@ class WorldMap {
      * @param {string} source - title of selected parameter ("cases" by default)
      * @param {number} coefficient - how much we need to multiply selected parameter (0.1 by default)
      */
-    showStatisticRounds(rawData = null, source = "cases", coefficient = 0.1) {
+    showStatisticRounds(rawData = null,) {
         if (this.data.length == 0) this.data = this.createData(rawData);
 
 
@@ -365,40 +367,8 @@ class WorldMap {
             this.drawRound(country.lat, country.long,
                 country.score * country.caseCoefficient,
                 country.country, country.countryFlag,
-                source, country.caseTitle)
+                country.caseTitle, country.score)
         });
-
-        /*
-        active: 9409
-    activePerOneMillion: 239.21
-    cases: 50677
-    casesPerOneMillion: 1288
-    continent: "Asia"
-    country: "Afghanistan"
-    countryInfo:
-    flag: "https://disease.sh/assets/img/flags/af.png"
-    iso2: "AF"
-    iso3: "AFG"
-    lat: 33
-    long: 65
-    _id: 4
-    __proto__: Object
-    critical: 93
-    criticalPerOneMillion: 2.36
-    deaths: 2110
-    deathsPerOneMillion: 54
-    oneCasePerPeople: 776
-    oneDeathPerPeople: 18642
-    oneTestPerPeople: 218
-    population: 39333612
-    recovered: 39158
-    recoveredPerOneMillion: 995.54
-    tests: 180385
-    testsPerOneMillion: 4586
-    todayCases: 141
-    todayDeaths: 56
-    todayRecovered: 359
-    updated: 1608485384542 */
 
 
     }

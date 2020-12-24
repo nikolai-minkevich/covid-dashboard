@@ -18,15 +18,15 @@ class StatisticItem {
       let demoCountry = null;
       // 
       if (this.showCountry) {
-        let countryHeader = document.createElement("div")
+        //let countryHeader = document.createElement("div")
         let countryFlag = document.createElement("img")
         countryFlag.src = demoList[i].countryFlag;
         countryFlag.className = "map-flag";
         demoCountry = create("span", "demo_country", `${demoList[i].country}`,);
-        countryHeader.append(countryFlag, demoCountry)
+        //countryHeader.append(countryFlag, demoCountry)
         demoNumber = create("span", "demo_number", `${demoList[i].score}`);
 
-        demoItem = create("div", `demo_item ${this.className}`, [countryHeader, demoNumber], null, ['id', `${demoList[i].countryCode}`]);
+        demoItem = create("div", `demo_item ${this.className}`, [countryFlag, demoCountry, demoNumber], null, ['id', `${demoList[i].countryCode}`]);
       } else {
         demoItem = create("div", `demo_item ${this.className}`, [demoNumber, demoCountry]);
       }
