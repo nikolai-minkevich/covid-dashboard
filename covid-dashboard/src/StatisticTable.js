@@ -11,10 +11,12 @@ class StatisticTable {
   }
   createData(data){
     this.data = data;
+
+
     const demoListItems = [
       "total cases / deaths / recovered",
-      "today cases / deaths / recovered",
       "total cases / deaths / recovered per 100000",
+      "today cases / deaths / recovered",
       "today cases / deaths / recovered per 100000",
     ];
     this.demoListItems = demoListItems;
@@ -49,7 +51,7 @@ class StatisticTable {
       todayDeathsPer100000,
       todayRecoveredPer100000,
     ];
-    const demoList = [total, today, totalPer100000, todayPer100000];
+    const demoList = [total,totalPer100000, today, todayPer100000];
     this.demoList = demoList;
   }
   generateLayout() {
@@ -116,8 +118,13 @@ class StatisticTable {
       });
   }
   changeChosenItem(number) {
-    this.chosenItem = number;
-    this.changeView();
+    if (this.chosenItem !== parseInt(number)) {
+      document.querySelector('.mainContent_container').setAttribute('data-chosenitem', parseInt(number)*3);
+      this.chosenItem = number;
+      this.changeView();
+  }
+
+  
   }
 
   changeView() {

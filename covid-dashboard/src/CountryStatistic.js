@@ -32,26 +32,26 @@ class CountryStatistic {
     }
 
     const coefPer1000000 = 1000000
-    
+
     countries.map((item) => {
       if (item.population < 1) item.population = coefPer1000000;
-      let casesPer1000000 = Math.round(item.cases*coefPer1000000/item.population);
-      if(casesPer1000000 ==NaN|| undefined){casesPer1000000 = 0}
-  
-      let deathsPer1000000 = Math.round(item.deaths*coefPer1000000/item.population);
-      if(deathsPer1000000 ==NaN|| undefined){deathsPer1000000 = 0}
-  
-      let recoveredPer1000000 = Math.round(item.cases*coefPer1000000/item.population);
-      if(recoveredPer1000000 ==NaN|| undefined){recoveredPer1000000 = 0}
-  
-      let todayCasesPer1000000 = Math.round(item.todayCases*coefPer1000000/item.population);
-      if(todayCasesPer1000000 ==NaN|| undefined){todayCasesPer1000000 = 0}
-  
-      let todayDeathsPer1000000 = Math.round(item.todayDeaths*coefPer1000000/item.population);
-      if(todayDeathsPer1000000 == NaN || undefined){todayDeathsPer1000000 = 0}
-  
-      let todayRecoveredPer1000000 = Math.round(item.todayRecovered*coefPer1000000/item.population);
-      if(todayRecoveredPer1000000 ==NaN|| undefined){todayRecoveredPer1000000 = 0}
+      let casesPer1000000 = Math.round(item.cases * coefPer1000000 / item.population);
+      if (isNaN(casesPer1000000) || undefined) { casesPer1000000 = 0 }
+
+      let deathsPer1000000 = Math.round(item.deaths * coefPer1000000 / item.population);
+      if (isNaN(deathsPer1000000) || undefined) { deathsPer1000000 = 0 }
+
+      let recoveredPer1000000 = Math.round(item.cases * coefPer1000000 / item.population);
+      if (isNaN(recoveredPer1000000) || undefined) { recoveredPer1000000 = 0 }
+
+      let todayCasesPer1000000 = Math.round(item.todayCases * coefPer1000000 / item.population);
+      if (isNaN(todayCasesPer1000000) || undefined) { todayCasesPer1000000 = 0 }
+
+      let todayDeathsPer1000000 = Math.round(item.todayDeaths * coefPer1000000 / item.population);
+      if (isNaN(todayDeathsPer1000000) || undefined) { todayDeathsPer1000000 = 0 }
+
+      let todayRecoveredPer1000000 = Math.round(item.todayRecovered * coefPer1000000 / item.population);
+      if (isNaN(todayRecoveredPer1000000) || undefined) { todayRecoveredPer1000000 = 0 }
 
       const demoListItemsСontent = [
         item.cases,
@@ -127,13 +127,18 @@ class CountryStatistic {
         if (this.chosenItem === this.demoListItems.length - 1) {
           this.changeChosenItem(0);
         } else {
-          this.changeChosenItem(this.chosenItem + 1);
+          this.changeChosenItem(parseInt(this.chosenItem) + 1);
         }
       });
   }
   changeChosenItem(number) {
-    this.chosenItem = number;
-    this.changeView();
+    if (this.chosenItem !== parseInt(number)) {
+      document.querySelector('.mainContent_container').setAttribute('data-chosenitem', number);
+      this.chosenItem = parseInt(number);
+      this.changeView();
+    }
+
+
   }
 
   changeView() {
