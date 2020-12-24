@@ -64,6 +64,7 @@ class WorldMap {
         function onMapClick(e) {
             console.log('latlng', e.latlng);
             self.geonamesAPI.getCountryName(e.latlng.lat, e.latlng.lng).then(countryCode => {
+                console.log('countryCode>>',countryCode);
                 if (countryCode !== undefined) {
                     document.querySelector('.mainContent_container').setAttribute('data-country', countryCode);
                 }

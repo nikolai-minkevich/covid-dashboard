@@ -69,7 +69,7 @@ class Main {
     this.worldMap = new WorldMap();
     this.covid19API.getAll().then((data) => {
       const updatedDate = new Date(data.updated);
-      document.querySelector('.header-date').textContent = `Data updated ${updatedDate.toISOString().toString().replace(/T/gi,' ').slice(0,-8)}`
+      document.querySelector('.header-date').textContent = `Data updated ${updatedDate.toISOString().toString().replace(/T/gi, ' ').slice(0, -8)}`
       this.statisticTable.createData(data);
       this.statisticTable.generateLayout();
       this.chartClass.getPopulation(data);
@@ -137,6 +137,11 @@ class Main {
       if (mutationRecords[0].attributeName === "data-country") {
         const countryCode = document.querySelector(".mainContent_container")
           .dataset.country;
+        if (countryCode === 'WORLD') {
+          //this.removeShowWorldResultButton();
+          return;
+        }
+
         this.countriesData.map((item) => {
           if (item.countryInfo.iso2 == countryCode.trim()) {
             this.choseCountry = item.country;
