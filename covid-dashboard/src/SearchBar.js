@@ -12,7 +12,7 @@ class SearchBar {
                 item.classList.remove('hidden-by-search');
             });
             Array.from(document.querySelectorAll('.countryStatistic_demo_item')).map((item) => {
-                if (!item.firstChild.childNodes[1].textContent.toLowerCase().includes(searchPhrase.toLowerCase())) {
+                if (!item.childNodes[1].textContent.toLowerCase().includes(searchPhrase.toLowerCase())) {
                     item.classList.add('hidden-by-search');
                 }
             })
