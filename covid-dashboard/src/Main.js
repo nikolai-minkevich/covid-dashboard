@@ -6,6 +6,7 @@ import WorldMap from "./WorldMap";
 import ChartClass from "./ChartClass";
 import DeployerClass from "./DeployerClass";
 import SearchBar from "./SearchBar";
+
 class Main {
   constructor() {
     this.choseCountry = null;
@@ -16,23 +17,17 @@ class Main {
     document
       .querySelector(".wrapper")
       .append(create("main", "mainContent_container"));
-    /*const deployers = [];
-    for(let i =0; i<4;i+=1){
-      const deployer = new DeployerClass()
-      deployers.push(deployer)
-    }
-    console.log("deployers",deployers);*/
+
     const сountryStatisticDeployer = new DeployerClass(".сountryStatisticСell");
-    //сountryStatisticDeployer.generateLayout()
+
     const statisticTableDeployer = new DeployerClass(".statisticTableСell");
-    //statisticTableDeployer.generateLayout()
+
     const worldMapDeployer = new DeployerClass(".worldMapСell");
-    //worldMapDeployer.generateLayout()
+
     const chartClassDeployer = new DeployerClass(
       ".chartClassСell",
       "chartClassDeployer"
     );
-    //chartClassDeployer.generateLayout()
     const сountryStatisticСell = create(
       "div",
       "сountryStatisticСell",
